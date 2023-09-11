@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+// import type { NextPage } from 'next'
 import * as Y from 'yjs'
 import { WebsocketProvider } from 'y-websocket'
 import StarterKit from '@tiptap/starter-kit'
@@ -7,10 +7,10 @@ import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
 
-const Home: NextPage = () => {
-    const YdocRef = useRef < Y.Doc | null > (null)
-    const YWebSocketProviderRef = useRef < WebsocketProvider | null > (null)
-    const [editor, setEditor] = useState < Editor | null > (null)
+const Home = () => {
+    const YdocRef = useRef(null)
+    const YWebSocketProviderRef = useRef(null)
+    const [editor, setEditor] = useState(null)
 
     useEffect(() => {
         YdocRef.current = new Y.Doc()

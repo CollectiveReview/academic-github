@@ -1,8 +1,9 @@
 // App.js
 import React, { useState } from 'react';
-import RepoList from './components/RepoList';
 import { Grid } from '@mui/material';
 import Body from './components/Body';
+import RepoList from './components/RepoList';
+import Home from './components/NextTiptapEditor';
 
 // import ProseMirrorEditor from './components/ProseMirrorEditor';
 
@@ -30,6 +31,7 @@ function App() {
         </Grid>
         <Grid item xs={10}>
           <Body selectedDocument={selectedDocument} />
+          <Home />
         </Grid>
       </Grid>
       <button onClick={handleConnectClick}>
