@@ -4,6 +4,7 @@ import { Button, Grid } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 import Body from './components/Body';
 import RepoList from './components/RepoList';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -12,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center', // 中央揃
     margin: '0 auto', // 横方向に中央揃え
     padding: theme.spacing(3), // 内部の余白
-    backgroundImage: 'linear-gradient(150deg, rgba(247, 166, 12, 0.5) 20%, rgba(255, 34, 87, 0.5) 60%, rgba(154, 39, 238, 0.5) 80%, rgba(35, 102, 247, 0.5))'
   },
   root: {
     display: 'flex',
@@ -33,15 +33,33 @@ function App() {
 
   // const [isConnected, setIsConnected] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState(null); // 選択されたドキュメント情報を保持
-
-  // const handleConnectClick = () => {
-  //   setIsConnected(!isConnected);
-  // };
+  const [docid, setdocid] = useState(3);
 
   // ドキュメントが選択された際に呼ばれる関数
   const handleDocumentSelect = (documentInfo) => {
     setSelectedDocument(documentInfo);
   };
+  const CreateNewRepo = (id) => {
+    const url = "https://us-central1-yjs-editor.cloudfunctions.net/addMessage"
+    const requestData = {
+      id: docid,
+      roomName: "room" + docid,
+      name: "repository" + docid,
+      title: "The greatest document in the world"
+    }
+    console.log(requestData)
+    axios.post(url, requestData)
+      .then(response => {
+        // リクエスト成功時の処理
+        console.log(response.data);
+      })
+      .catch(error => {
+        // エラー時の処理
+        console.error(error);
+      });
+
+    setdocid(docid + 1)
+  }
 
   return (
     <div className={classes.container}>
@@ -49,7 +67,7 @@ function App() {
         <Grid item xs={2}>
           <Grid container spacing={0}>
             <RepoList onDocumentSelect={handleDocumentSelect} />
-            <Button>CreateNewRepo</Button>
+            <Button onClick={CreateNewRepo}>CreateNewRepo</Button>
           </Grid>
         </Grid>
         <Grid item xs={10}>
@@ -60,10 +78,6 @@ function App() {
           )}
         </Grid>
       </Grid>
-
-      {/* <button onClick={handleConnectClick}>
-        {isConnected ? 'Disconnect' : 'Connect'}
-      </button> */}
     </div>
   );
 }
