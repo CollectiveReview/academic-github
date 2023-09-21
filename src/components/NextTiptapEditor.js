@@ -36,10 +36,10 @@ const NextTiptapEditor = () => {
             })
         )
 
-        // return () => {
-        //     YdocRef.current?.destroy()
-        //     YWebSocketProviderRef.current?.destroy()
-        // }
+        return () => {
+            YdocRef.current?.destroy()
+            YWebSocketProviderRef.current?.destroy()
+        }
     }, [roomName])
 
     return (
