@@ -7,10 +7,9 @@ import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
 
-const NextTiptapEditor = () => {
+const NextTiptapEditor = ({ roomName }) => {
     const YdocRef = useRef(null)
     const YWebSocketProviderRef = useRef(null)
-    const [roomName, setroomName] = useState('my-roomName')
     const [editor, setEditor] = useState(null)
 
     useEffect(() => {
@@ -18,7 +17,7 @@ const NextTiptapEditor = () => {
 
         YWebSocketProviderRef.current = new WebsocketProvider(
             "ws://test-6pvnca4zhq-an.a.run.app/",
-            `${roomName}`,
+            roomName,
             YdocRef.current
         )
 

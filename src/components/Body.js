@@ -18,7 +18,7 @@ function Body({ selectedDocument }) {
         <div>
             <Typography variant='h3'>{selectedDocument.title}</Typography>
             <p>{documentContent}</p>
-            <NextTiptapEditor />
+            <NextTiptapEditor roomName={selectedDocument.roomName} />
         </div>
     );
 }
