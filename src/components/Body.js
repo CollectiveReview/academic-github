@@ -1,6 +1,7 @@
 // Body.js
 import { Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import NextTiptapEditor from './NextTiptapEditor';
 
 function Body({ selectedDocument }) {
     const [documentContent, setDocumentContent] = useState('');
@@ -17,6 +18,7 @@ function Body({ selectedDocument }) {
         <div>
             <Typography variant='h3'>{selectedDocument.title}</Typography>
             <p>{documentContent}</p>
+            <NextTiptapEditor />
         </div>
     );
 }

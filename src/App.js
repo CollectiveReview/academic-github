@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import Body from './components/Body';
 import RepoList from './components/RepoList';
-import Home from './components/NextTiptapEditor';
+
 
 // import ProseMirrorEditor from './components/ProseMirrorEditor';
 
@@ -12,7 +12,6 @@ function App() {
   const [selectedDocument, setSelectedDocument] = useState(null); // 選択されたドキュメント情報を保持
 
   const handleConnectClick = () => {
-    // Implement the connection logic here
     setIsConnected(!isConnected);
   };
 
@@ -30,8 +29,12 @@ function App() {
           </Grid>
         </Grid>
         <Grid item xs={10}>
-          <Body selectedDocument={selectedDocument} />
-          <Home />
+          {selectedDocument ? (
+            <Body selectedDocument={selectedDocument} />
+          ) : (
+            null
+          )}
+
         </Grid>
       </Grid>
       <button onClick={handleConnectClick}>

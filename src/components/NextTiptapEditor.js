@@ -7,17 +7,18 @@ import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
 
-const Home = () => {
+const NextTiptapEditor = () => {
     const YdocRef = useRef(null)
     const YWebSocketProviderRef = useRef(null)
+    const [roomName, setroomName] = useState('my-roomName')
     const [editor, setEditor] = useState(null)
 
     useEffect(() => {
         YdocRef.current = new Y.Doc()
 
         YWebSocketProviderRef.current = new WebsocketProvider(
-            'ws://localhost:1234',
-            'roomname',
+            "ws://test-6pvnca4zhq-an.a.run.app/",
+            `${roomName}`,
             YdocRef.current
         )
 
@@ -35,11 +36,11 @@ const Home = () => {
             })
         )
 
-        return () => {
-            YdocRef.current?.destroy()
-            YWebSocketProviderRef.current?.destroy()
-        }
-    }, [])
+        // return () => {
+        //     YdocRef.current?.destroy()
+        //     YWebSocketProviderRef.current?.destroy()
+        // }
+    }, [roomName])
 
     return (
         <div>
@@ -48,4 +49,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default NextTiptapEditor
