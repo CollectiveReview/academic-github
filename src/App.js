@@ -1,6 +1,7 @@
 // App.js
 import React, { useState } from 'react';
-import { Button, Grid, makeStyles } from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import { makeStyles } from '@material-ui/core';
 import Body from './components/Body';
 import RepoList from './components/RepoList';
 
