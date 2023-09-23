@@ -1,8 +1,5 @@
 # Getting Started with Create React App
-
 This project is to build a web platform to
-
-
 
 
 ## Specification
@@ -11,10 +8,26 @@ Frontend: React, Material UI, TailwindCSS, firebase Hosting
 Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
 
 ## Getting Started
-`yarn install`
-in the top directory `yarn install`
-in the /functions `npm install`
-then `npm start`
+
+clone this repo:
+
+`git clone `
+
+in top directory `yarn install`
+
+`cd functions` `npm install`
+
+then
+
+`npm start`
+
+### Deploy
+bash
+`npm run build`
+
+`firebase deploy --only hosting`
+
+
 
 ### `npm start`
 
