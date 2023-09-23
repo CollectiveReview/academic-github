@@ -19,14 +19,16 @@
     "@tiptap/react": "^2.1.8",
     "@tiptap/starter-kit": "^2.1.8",
     "axios": "^1.5.0",
-    "next": "^13.4.19",
+    "next": "^13.5.2",
     "prosemirror-example-setup": "^1.2.2",
     "prosemirror-keymap": "^1.2.2",
     "prosemirror-state": "^1.4.3",
     "prosemirror-view": "^1.31.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.3",
     "web-vitals": "^2.1.4",
     "y-prosemirror": "^1.2.1",
     "y-websocket": "^1.5.0",
@@ -55,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }
