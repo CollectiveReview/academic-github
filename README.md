@@ -1,17 +1,20 @@
 # Getting Started with Create React App
-This project is to build a web platform to
+[Project Development Overview](https://www.notion.so/code4japan-community/16c5dee106f847d996324e40464325ff?pvs=4)
 
+This project is to build a web platform for researchers to collaborate like programmers do on github.
+- **Contribution Driven** - evyeryone can edit and apply for review.
+- 
 
 ## Specification
 We are using 
-Frontend: React, Material UI, TailwindCSS, firebase Hosting
+Frontend: React, Material UI, [TailwindCSS](https://tailwindcss.com/), firebase Hosting
 Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
 
 ## Getting Started
 
 clone this repo:
 
-`git clone `
+`git clone https://github.com/CollectiveReview/react-yjs.git`
 
 in top directory `yarn install`
 
