@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Specification
+We are using 
+Frontend: React, Material UI, TailwindCSS, firebase Hosting
+Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
+
 ## Getting Started
 `yarn install`
 in the top directory `yarn install`
