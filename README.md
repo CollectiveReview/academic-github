@@ -3,8 +3,9 @@
 
 We are building a OSS software for researchers to collaborate for their reseach projects like programmers do on github for their software developments.
 Our goal is to establish a platform such that:
-- **Contribution Driven** - evyeryone can edit article, add data or reference, undergo reviewing. 
-- **Continuously developing** - 
+- **Contribution Driven** - evyeryone can edit article, add data or reference. Each modification undergo review, and when accepted it is hornored under your name.
+- **Universal citation** - repository can accept any format of data, and every citation is expressed via doi. Citaions are the dependency of the projects. Each citation is a link and points the single source of truth.
+- **Collective review** - the validity and impact of a project is measured by how many other projects accept it. We don't need to rely on busy peers, which may biased and taking much time.
 
 ## Specification
 We are using:
@@ -13,18 +14,23 @@ We are using:
 - Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
 
 ## Getting Started
+Visit: 
+
+When you try this locally,
 
 clone this repo:
 
 `git clone https://github.com/CollectiveReview/react-yjs.git`
 
-in top directory `yarn install`
+in top directory `npm install`
 
 `cd functions` `npm install`
 
 then
 
-`npm start`
+`next dev`
+
+make sure you have installed next in your global environment.
 
 ### Deploy
 bash
