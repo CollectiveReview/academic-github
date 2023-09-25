@@ -1,14 +1,16 @@
-# Getting Started with Create React App
+# Platform for Open Science
 [Project Development Overview](https://www.notion.so/code4japan-community/16c5dee106f847d996324e40464325ff?pvs=4)
 
-This project is to build a web platform for researchers to collaborate like programmers do on github.
-- **Contribution Driven** - evyeryone can edit and apply for review.
-- 
+We are building a OSS software for researchers to collaborate for their reseach projects like programmers do on github for their software developments.
+Our goal is to establish a platform such that:
+- **Contribution Driven** - evyeryone can edit article, add data or reference, undergo reviewing. 
+- **Continuously developing** - 
 
 ## Specification
-We are using 
-Frontend: React, Material UI, [TailwindCSS](https://tailwindcss.com/), firebase Hosting
-Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
+We are using:
+
+- Frontend: Next, Material UI, [TailwindCSS](https://tailwindcss.com/), firebase Hosting
+- Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
 
 ## Getting Started
 
