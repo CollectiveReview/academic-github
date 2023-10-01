@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # Platform for Open Science
 [Project Development Overview](https://www.notion.so/code4japan-community/16c5dee106f847d996324e40464325ff?pvs=4)
 
@@ -13,9 +12,6 @@ We are using:
 
 - Frontend: Next, Material UI, [TailwindCSS](https://tailwindcss.com/), firebase Hosting
 - Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
-=======
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
->>>>>>> Stashed changes
 
 ## Getting Started
 Visit: 
@@ -34,18 +30,12 @@ pnpm dev
 bun dev
 ```
 
-<<<<<<< Updated upstream
 in top directory `npm install`
-=======
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
->>>>>>> Stashed changes
-
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-<<<<<<< Updated upstream
 then
-
-`next dev`
+`npm run dev`
+or `next dev`
 
 make sure you have installed next in your global environment.
 
@@ -79,9 +69,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-=======
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
->>>>>>> Stashed changes
 
 ## Learn More
 
