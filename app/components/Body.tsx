@@ -2,25 +2,31 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import NextTiptapEditor from "./NextTiptapEditor";
+import { userFirebaseAuthContext } from '@/lib/firebase/utils/auth'
 
 function Body({ selectedDocument }: { selectedDocument: any }) {
-  const [documentContent, setDocumentContent] = useState("");
+    const auth = userFirebaseAuthContext()
 
-  useEffect(() => {
-    // 選択されたドキュメントが変更されたらAPIを呼び出して内容を取得
-    if (selectedDocument) {
-      const content = `this is the document${selectedDocument.id}`;
-      setDocumentContent(content);
-    }
-  }, [selectedDocument]);
+    const [documentContent, setDocumentContent] = useState("");
+    const currentUserUid = auth.currentUser?.uid
 
-  return (
-    <div>
-      <Typography variant="h3">{selectedDocument.title}</Typography>
-      <p>{documentContent}</p>
-      <NextTiptapEditor roomName={selectedDocument.roomName} />
-    </div>
-  );
+
+    useEffect(() => {
+        // 選択されたドキュメントが変更されたらAPIを呼び出して内容を取得
+        if (selectedDocument) {
+            const content = `this is the document${selectedDocument.id}`;
+            setDocumentContent(content);
+        }
+    }, [selectedDocument]);
+
+
+    return (
+        <div>
+
+            <Typography variant="h3">{selectedDocument.title}</Typography>
+            <NextTiptapEditor roomName={selectedDocument.roomName} />
+        </div>
+    );
 }
 
 export default Body;

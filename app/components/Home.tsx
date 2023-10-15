@@ -11,6 +11,7 @@ const Home = () => {
   // const [isConnected, setIsConnected] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState(null); // 選択されたドキュメント情報を保持
   const [docid, setdocid] = useState(3);
+  const [user, setUser] = useState(null);
 
   // ドキュメントが選択された際に呼ばれる関数
   const handleDocumentSelect = (documentInfo: any) => {

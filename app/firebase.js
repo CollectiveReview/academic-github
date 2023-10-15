@@ -6,12 +6,14 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAqG6ztzcxGKSB8Op3E-nhzfl9CgXOrlro",
+  authDomain: "yjs-editor.firebaseapp.com",
+  databaseURL: "https://yjs-editor-default-rtdb.firebaseio.com",
+  projectId: "yjs-editor",
+  storageBucket: "yjs-editor.appspot.com",
+  messagingSenderId: "459953287631",
+  appId: "1:459953287631:web:d988dd69db540bed08a2ba",
+  measurementId: "G-Z0P2MKNDR7"
 };
 
 // Initialize Firebase

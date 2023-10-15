@@ -44,6 +44,7 @@ const NextTiptapEditor = ({ roomName }) => {
     return (
         <div>
             <EditorContent editor={editor} />
+            <h1>please edit↑</h1>
         </div>
     )
 }

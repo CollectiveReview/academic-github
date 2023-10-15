@@ -53,7 +53,7 @@ const LoginPage = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     try {
-      // handleSignIn();
+      handleSignIn();
       console.log("Success!", values);
     } catch (error) {
       console.error("[Error]:", error);
@@ -64,6 +64,10 @@ const LoginPage = () => {
   const handleSignIn = async () => {
     try {
       await googleSignIn();
+
+      console.log(user.uid);
+      console.log(user.displayName);
+
     } catch (error) {
       console.log(error);
     }

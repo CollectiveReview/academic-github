@@ -4,9 +4,8 @@ import { Box, Typography, List, ListItemText, ListItemButton } from '@mui/materi
 
 
 const documents = [
-    { id: 1, name: 'Document 1', title: 'The greatest document in the world', roomName: 'room1' },
-    { id: 2, name: 'Document 2', title: 'The best document in the world', roomName: 'room2' },
-    { id: 3, name: 'Document 3', title: 'A tiny but significant document ', roomName: 'room3' },
+    { id: 1, name: 'Document 1', title: 'The greatest document in the world', roomName: 'room1', doc: 'doc1' },
+    { id: 2, name: 'Document 2', title: 'The greatest world', roomName: 'room1', doc: 'doc1' },
     // 他のドキュメントを追加
 ];
 
