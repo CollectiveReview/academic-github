@@ -6,11 +6,13 @@ import Collaboration from '@tiptap/extension-collaboration'
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
+import { UserAuth } from '../api/AuthContext';
 
 const NextTiptapEditor = ({ roomName }) => {
     const YdocRef = useRef(null)
     const YWebSocketProviderRef = useRef(null)
     const [editor, setEditor] = useState(null)
+    const { user } = UserAuth();
 
     useEffect(() => {
         YdocRef.current = new Y.Doc()
@@ -34,12 +36,18 @@ const NextTiptapEditor = ({ roomName }) => {
                 ],
             })
         )
+        if (editor !== null) {
+            console.log(editor)
+            editor.setEditable(false)
+        }
+
 
         return () => {
             YdocRef.current?.destroy()
             YWebSocketProviderRef.current?.destroy()
         }
     }, [roomName])
+
 
     return (
         <div>

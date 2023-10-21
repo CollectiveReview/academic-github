@@ -13,6 +13,9 @@ import Link from "next/link";
 // import { UserAuth } from "@/app/api/AuthContext";
 import ProfileMenu from "@/app/components/custom/profileMenu";
 import { UserAuth } from '../api/AuthContext';
+import { ActionButton } from "./custom/actionButton";
+import { BeakerIcon, GitPullRequestClosedIcon, GitPullRequestIcon, IssueOpenedIcon, NoteIcon } from "@primer/octicons-react";
+
 
 const menuList = [
   {
@@ -25,7 +28,7 @@ const menuList = [
   },
 ];
 
-const Header = () => {
+const RepositoryActionBar = () => {
   const { user, logOut } = UserAuth();
 
   useEffect(() => {
@@ -36,30 +39,23 @@ const Header = () => {
   }, [user]);
 
   return (
-    <div className="w-full bg-gray-100 p-1 shadow flex flex-row justify-between fixed items-center">
+    <div className="w-full bg-white-100 p-1  flex flex-row justify-between mt-16  items-center">
       <div className="flex items-centner m-2">
-        <Link
-          href="/"
-          className="border-r-2 border-gray-300 w-[50px] flex items-centner justify-center"
-        >
-          <IconButton aria-label="delete">
-            <HomeIcon />
-          </IconButton>
-        </Link>
-        <div className="flex px-3 items-center">
-
-          <h5 className="text-gray-500 ">Aerogel Drying Shrinkage</h5>
-        </div>
+        <ActionButton icon={<NoteIcon />} name="Article" href="" />
+        <ActionButton icon={<IssueOpenedIcon />} name="Issues" href="" />
+        <ActionButton icon={<GitPullRequestIcon />} name="Letters" href="" />
       </div>
       <div className="md:block hidden h-full items-center ">
         <div className="flex space-x-3 items-center h-full m-2 ">
-          <div className="flex items-center h-full">
-            <SearchInput placeholder="Search any repository..." />
-          </div>
           {user ? (
-            <div>
-              <ProfileMenu />
-            </div>
+            <Link href="/sign-in">
+              <Button
+                variant="text"
+                className="text-gray-700 hover:text-black h-7"
+              >
+                Collaborate
+              </Button>
+            </Link>
           ) : (
             <>
               <Link href="/login" className="border border-gray-200 rounded">
@@ -67,17 +63,10 @@ const Header = () => {
                   variant="text"
                   className="text-gray-700 hover:text-black h-7"
                 >
-                  Login
+                  clone to edit
                 </Button>
               </Link>
-              <Link href="/sign-in">
-                <Button
-                  variant="text"
-                  className="text-gray-700 hover:text-black h-7"
-                >
-                  Sign Up
-                </Button>
-              </Link>
+
             </>
           )}
         </div>
@@ -89,4 +78,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default RepositoryActionBar;

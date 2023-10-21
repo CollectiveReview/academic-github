@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import SearchIcon from '@mui/icons-material/Search';
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> { }
 
 const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -19,8 +19,8 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        <div className="border-l-2 border-gray-300 px-2">
-          <button><SearchIcon className="text-gray-500 hover:text-black"/></button>
+        <div className="border-l border-gray-300 px-2">
+          <button><SearchIcon className="text-gray-500 hover:text-black" /></button>
         </div>
       </div>
     );

@@ -1,11 +1,10 @@
-// RepoList.js
 import React from 'react';
 import { Box, Typography, List, ListItemText, ListItemButton } from '@mui/material';
 
 
 const documents = [
-    { id: 1, name: 'Document 1', title: 'The greatest document in the world', roomName: 'room1', doc: 'doc1' },
-    { id: 2, name: 'Document 2', title: 'The greatest world', roomName: 'room1', doc: 'doc1' },
+    { id: 1, name: 'Document 1', title: 'The greatest document in the world', roomName: 'room1', doc: 'doc1', owner: 'IiUSAJhdkIbBuUca1UV44zATkrl2' },
+    { id: 2, name: 'Document 2', title: 'The greatest world', roomName: 'room1', doc: 'doc1', owner: null },
     // 他のドキュメントを追加
 ];
 

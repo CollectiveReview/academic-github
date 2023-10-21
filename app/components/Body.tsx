@@ -2,29 +2,30 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import NextTiptapEditor from "./NextTiptapEditor";
-import { userFirebaseAuthContext } from '@/lib/firebase/utils/auth'
+import { UserAuth } from '../api/AuthContext';
+import RepositoryActionBar from "./RepositoryActionBar";
 
 function Body({ selectedDocument }: { selectedDocument: any }) {
-    const auth = userFirebaseAuthContext()
+    const { user, logOut } = UserAuth();
 
     const [documentContent, setDocumentContent] = useState("");
-    const currentUserUid = auth.currentUser?.uid
-
-
     useEffect(() => {
         // 選択されたドキュメントが変更されたらAPIを呼び出して内容を取得
         if (selectedDocument) {
-            const content = `this is the document${selectedDocument.id}`;
+            const content = ``;
             setDocumentContent(content);
         }
     }, [selectedDocument]);
-
+    const cloneRepo = () => {
+        alert("push!")
+    }
 
     return (
         <div>
 
             <Typography variant="h3">{selectedDocument.title}</Typography>
             <NextTiptapEditor roomName={selectedDocument.roomName} />
+
         </div>
     );
 }
