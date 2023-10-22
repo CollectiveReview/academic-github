@@ -48,7 +48,7 @@ const Header = () => {
         </Link>
         <div className="flex px-3 items-center">
 
-          <h5 className="text-gray-500 ">Aerogel Drying Shrinkage</h5>
+          <h5 className="text-gray-500 ">Sample Repository Title</h5>
         </div>
       </div>
       <div className="md:block hidden h-full items-center ">
@@ -56,6 +56,12 @@ const Header = () => {
           <div className="flex items-center h-full">
             <SearchInput placeholder="Search any repository..." />
           </div>
+          {user ? (
+            <div>
+              <button onClick={logOut}>Logout</button>
+            </div>
+          ) : null
+          }
           {user ? (
             <div>
               <ProfileMenu />

@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import SearchIcon from '@mui/icons-material/Search';
-
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { }
 
 const ActionButton = ({ icon, name, href }) => {
