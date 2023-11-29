@@ -6,7 +6,7 @@ import Collaboration from '@tiptap/extension-collaboration'
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
-import { UserAuth } from '../api/AuthContext';
+import { UserAuth } from '../../api/AuthContext';
 
 const NextTiptapEditor = ({ repo }) => {
     const YdocRef = useRef(new Y.Doc())

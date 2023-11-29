@@ -1,12 +1,11 @@
 // Body.js
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import NextTiptapEditor from "./NextTiptapEditor";
+import NextTiptapEditor from "./[repoid]/NextTiptapEditor";
 import { UserAuth } from '../api/AuthContext';
-import RepositoryActionBar from "./RepositoryActionBar";
+import RepositoryActionBar from "../components/RepositoryActionBar";
 
-function Body({ selectedDocument }) {
-
+function Body() {
     return (
         <div>
             <Typography variant="h3">{selectedDocument.title}</Typography>

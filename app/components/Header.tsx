@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { SearchInput } from "@/app/components/custom/searchInput";
-
 import MobileDropdownMenu from "./custom/mobileDropdownList";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
