@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "@/app/firebase";
+import { auth } from "@/app/api/firebase";
 
 const AuthContext = createContext();
 

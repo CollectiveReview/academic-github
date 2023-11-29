@@ -1,4 +1,3 @@
-import Home from "@/app/components/Home";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <div>
-      <Home />
+      This is a Home Page
     </div>
   );
 };

@@ -1,4 +1,4 @@
-// import type { NextPage } from 'next'
+import React from 'react'
 import * as Y from 'yjs'
 import { WebsocketProvider } from 'y-websocket'
 import StarterKit from '@tiptap/starter-kit'
@@ -8,11 +8,11 @@ import { EditorContent, Editor } from '@tiptap/react'
 import { useEffect, useRef, useState } from 'react'
 import { UserAuth } from '../../api/AuthContext';
 
-const NextTiptapEditor = ({ repo }) => {
+const NextTiptapEditor = () => {
     const YdocRef = useRef(new Y.Doc())
     const YWebSocketProviderRef = useRef(new WebsocketProvider(
         "ws://test-6pvnca4zhq-an.a.run.app/",
-        repo.roomName,
+        "sampleroom",
         YdocRef.current
     ))
     const [editor, setEditor] = useState(new Editor({
@@ -46,10 +46,10 @@ const NextTiptapEditor = ({ repo }) => {
 
 
     return (
-        <div>
-            <EditorContent editor={editor} />
-            <h1>please edit↑</h1>
-        </div>
+
+        <EditorContent editor= { editor } />
+        <h1>please edit↑</h1>
+            < /div>
     )
 }
 

@@ -1,11 +1,16 @@
-import React from 'react'
-// { id: 2, name: 'Document 2', title: 'The greatest world', roomName: 'room1', doc: 'doc1', owner: null },
+import { Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import NextTiptapEditor from "./NextTiptapEditor";
+import { UserAuth } from '../../api/AuthContext';
+import RepositoryActionBar from "../../components/RepositoryActionBar";
 
-
-const RepositoryDetailPage = () => {
+function Body() {
     return (
-        <div>RepositoryDetailPage</div>
-    )
+        <div>
+            {/* <Typography variant="h3">{selectedDocument.title}</Typography>
+            <NextTiptapEditor repo={selectedDocument} /> */}
+        </div>
+    );
 }
 
-export default RepositoryDetailPage
+export default Body;
