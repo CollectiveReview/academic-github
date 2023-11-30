@@ -1,4 +1,7 @@
-import { useContext, createContext, useState, useEffect } from "react";
+'use client'
+
+import { useState, useEffect } from "react";
+import { useContext, createContext } from "react";
 import {
   signInWithPopup,
   signOut,
