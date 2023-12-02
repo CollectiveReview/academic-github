@@ -8,10 +8,13 @@ import * as Y from "yjs";
 
 const doc = new Y.Doc();
 
-const { WebsocketProvider } = require("y-websocket");
-const provider = new WebsocketProvider("ws://localhost:8080", "sample", doc);
+interface Props {
+    params: { repoid: string }
+}
+export default function Editor({ params }: Props) {
+    const { WebsocketProvider } = require("y-websocket");
+    const provider = new WebsocketProvider("ws://localhost:8080", params.repoid, doc);
 
-export default function Editor() {
     const editor: BlockNoteEditor | null = useBlockNote({
         collaboration: {
             provider,
@@ -20,5 +23,10 @@ export default function Editor() {
         },
     });
 
-    return <BlockNoteView editor={editor} />;
+    return (
+        <div>
+            <p>{params.repoid}</p>
+            <BlockNoteView editor={editor} />
+        </div>
+    )
 }

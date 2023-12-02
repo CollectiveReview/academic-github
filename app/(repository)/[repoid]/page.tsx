@@ -1,7 +1,9 @@
 import dynamic from "next/dynamic";
 
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
-
-export default function RepositoryDetailPage() {
-    return <Editor />;
+interface Props {
+    params: { repoid: string }
+}
+export default function RepositoryDetailPage({ params }: Props) {
+    return <Editor params={params} />;
 }
