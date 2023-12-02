@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import { Button } from "./ui/button";
 import Link from "next/link";
 import { UserAuth } from '../api/AuthContext';
 import { ActionButton } from "./custom/actionButton";
 
-import { GitPullRequestIcon, IssueOpenedIcon, NoteIcon } from "@primer/octicons-react";
+import { CircleDot, GitPullRequestIcon, ScrollTextIcon, } from "lucide-react";
 
 const RepositoryActionBar = () => {
   const { user, logOut } = UserAuth();
@@ -22,8 +21,8 @@ const RepositoryActionBar = () => {
   return (
     <div className="w-full bg-white-100 p-1  flex flex-row justify-between mt-16  items-center">
       <div className="flex items-centner m-2">
-        <ActionButton icon={<NoteIcon />} name="Article" href="" />
-        <ActionButton icon={<IssueOpenedIcon />} name="Issues" href="" />
+        <ActionButton icon={<ScrollTextIcon />} name="Article" href="" />
+        <ActionButton icon={<CircleDot />} name="Issues" href="" />
         <ActionButton icon={<GitPullRequestIcon />} name="Letters" href="" />
       </div>
       <div className="md:block hidden h-full items-center ">
@@ -31,7 +30,6 @@ const RepositoryActionBar = () => {
           {user ? (
             <Link href="/sign-in">
               <Button
-                variant="text"
                 className="text-gray-700 hover:text-black h-7"
               >
                 Collaborate
@@ -41,7 +39,6 @@ const RepositoryActionBar = () => {
             <>
               <Link href="/login" className="border border-gray-200 rounded">
                 <Button
-                  variant="text"
                   className="text-gray-700 hover:text-black h-7"
                 >
                   clone to edit

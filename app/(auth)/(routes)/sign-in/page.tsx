@@ -2,7 +2,7 @@
 
 import { Input } from "@/app/components/ui/input";
 import { PasswordInput } from "@/app/components/custom/passwordInput";
-import Button from "@mui/material/Button";
+import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import { Label } from "@/app/components/ui/label";
@@ -163,7 +163,6 @@ const SignInPage = () => {
 
               <Button
                 type="submit"
-                variant="contained"
                 className="bg-gray-700 w-full"
               >
                 SUBMIT

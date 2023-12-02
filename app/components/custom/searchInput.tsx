@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import SearchIcon from '@mui/icons-material/Search';
+import { SearchIcon } from "lucide-react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> { }

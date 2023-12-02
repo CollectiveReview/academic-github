@@ -1,13 +1,7 @@
-import React from "react";
-import NextTiptapEditor from "./NextTiptapEditor";
+import dynamic from "next/dynamic";
 
-function Body() {
-    return (
-        <div>
-            {/* <Typography variant="h3">{selectedDocument.title}</Typography> */}
-            <NextTiptapEditor />
-        </div>
-    );
+const Editor = dynamic(() => import("./Editor"), { ssr: false });
+
+export default function RepositoryDetailPage() {
+    return <Editor />;
 }
-
-export default Body;

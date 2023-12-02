@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import HomeIcon from "@mui/icons-material/Home";
+import { HomeIcon } from "lucide-react";
 import { SearchInput } from "@/app/components/custom/searchInput";
 import MobileDropdownMenu from "./custom/mobileDropdownList";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import { Button } from "./ui/button";
 import Link from "next/link";
 // import { UserAuth } from "@/app/api/AuthContext";
 import ProfileMenu from "@/app/components/custom/profileMenu";
@@ -39,9 +38,9 @@ const Header = () => {
           href="/"
           className="border-r-2 border-gray-300 w-[50px] flex items-centner justify-center"
         >
-          <IconButton aria-label="delete">
+          <Button aria-label="delete">
             <HomeIcon />
-          </IconButton>
+          </Button>
         </Link>
         <div className="flex px-3 items-center">
 
@@ -67,7 +66,6 @@ const Header = () => {
             <>
               <Link href="/login" className="border border-gray-200 rounded">
                 <Button
-                  variant="text"
                   className="text-gray-700 hover:text-black h-7"
                 >
                   Login
@@ -75,7 +73,6 @@ const Header = () => {
               </Link>
               <Link href="/sign-in">
                 <Button
-                  variant="text"
                   className="text-gray-700 hover:text-black h-7"
                 >
                   Sign Up

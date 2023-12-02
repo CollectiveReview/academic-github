@@ -2,11 +2,9 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> { }
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -30,9 +28,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? (
-            <VisibilityOffIcon className="h-5 w-5" />
+            <EyeIcon className="h-5 w-5" />
           ) : (
-            <RemoveRedEyeIcon className="h-5 w-5" />
+            <EyeOffIcon className="h-5 w-5" />
           )}
 
         </button>
