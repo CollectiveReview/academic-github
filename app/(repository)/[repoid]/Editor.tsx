@@ -1,16 +1,12 @@
 'use client'
 
-// import { doc, ref, setDoc } from "firebase/firestore";
-// import { query, where, getDoc } from "firebase/firestore";
 import { BlockNoteEditor } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import { getRandomUser } from "@/lib/randomUser";
 import * as Y from "yjs";
 import { Button } from "@/app/components/ui/button";
-import { useState } from "react";
 import { IndexeddbPersistence } from 'y-indexeddb'
-// import { db } from "@/app/api/firebase";
 import { rtdb } from "@/app/api/firebase";
 import { ref, push, get, limitToLast, query } from "firebase/database"
 
@@ -25,7 +21,6 @@ export default function Editor({ params }: Props) {
     const provider = collaboration ?
         new WebsocketProvider("ws://localhost:8080", params.repoid, ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
-    const [cloned, Setcloned] = useState(false);
 
     const postListRef = ref(rtdb, params.repoid);
 
