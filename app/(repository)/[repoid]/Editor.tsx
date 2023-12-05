@@ -1,8 +1,7 @@
 'use client'
 
-import { collection, doc, limitToLast, setDoc } from "firebase/firestore";
-import { query, where, getDoc } from "firebase/firestore";
-
+// import { doc, ref, setDoc } from "firebase/firestore";
+// import { query, where, getDoc } from "firebase/firestore";
 import { BlockNoteEditor } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
@@ -11,11 +10,14 @@ import * as Y from "yjs";
 import { Button } from "@/app/components/ui/button";
 import { useState } from "react";
 import { IndexeddbPersistence } from 'y-indexeddb'
-import { db } from "@/app/api/firebase";
+// import { db } from "@/app/api/firebase";
+import { rtdb } from "@/app/api/firebase";
+import { ref, push, get, limitToLast, query } from "firebase/database"
 
 const ydoc = new Y.Doc();
 const { WebsocketProvider } = require("y-websocket");
 const collaboration = false
+
 interface Props {
     params: { repoid: string }
 }
@@ -24,6 +26,8 @@ export default function Editor({ params }: Props) {
         new WebsocketProvider("ws://localhost:8080", params.repoid, ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
     const [cloned, Setcloned] = useState(false);
+
+    const postListRef = ref(rtdb, params.repoid);
 
     const editor: BlockNoteEditor | null = useBlockNote({
         collaboration: {
@@ -36,26 +40,30 @@ export default function Editor({ params }: Props) {
     return (
         <div>
             <Button onClick={async () => {
-                const docRef = doc(db, "repos", "test_repo");
-                const docSnap = await getDoc(docRef);
+                const snapshot = await get(query(postListRef, limitToLast(1)));
 
-                if (docSnap.exists()) {
-                    const data = docSnap.data()
-                    const u8a = new Uint8Array(atob(data.state).split('').map(char => char.charCodeAt(0)));
-                    Y.applyUpdate(ydoc, u8a)
-                } else {
-                    console.log("No such document!");
-                }
+                const latestPost = snapshot.val();
+                const latestPostKey = Object.keys(latestPost)[0];
+                const data = latestPost[latestPostKey].state
+
+                console.log(data)
+                const u8a = new Uint8Array(atob(data).split('').map(char => char.charCodeAt(0)));
+                Y.applyUpdate(ydoc, u8a)
             }}>Pull</Button>
             <Button onClick={async () => {
-                const state = Y.encodeStateAsUpdate(ydoc)
-                const base64String = btoa(String.fromCharCode.apply(null, Array.from(state)));
-                const repoRef = collection(db, "repos");
-                const docRef = await setDoc(doc(repoRef, "test_repo"), {
-                    state: base64String
-                })
-                console.log(docRef)
+                const stateVec = Y.encodeStateAsUpdate(ydoc)
+                const state = btoa(String.fromCharCode.apply(null, Array.from(stateVec)));
+                const date = new Date()
+                await push(postListRef, {
+                    state: state,
+                    timestamp: date.getTime()
+                });
             }}>Send Letter</Button>
+
+            <Button onClick={() => {
+
+
+            }}>test</Button>
             <BlockNoteView editor={editor} />
         </div>
     )
