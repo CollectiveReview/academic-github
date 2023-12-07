@@ -7,6 +7,7 @@ import { UserAuth } from '../api/AuthContext';
 import { ActionButton } from "./custom/actionButton";
 
 import { CircleDot, GitPullRequestIcon, ScrollTextIcon, } from "lucide-react";
+import { Router } from "next/router";
 
 const RepositoryActionBar = () => {
   const { user, logOut } = UserAuth();

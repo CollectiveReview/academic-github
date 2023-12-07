@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { AuthContextProvider } from "./api/AuthContext";
 import Header from "@/app/components/Header";
 import RepositoryActionBar from "./components/RepositoryActionBar";
+import { Theme } from '@radix-ui/themes';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} w-screen h-screen flex flex-col`}>
-        <AuthContextProvider>
-          <Header />
-          <RepositoryActionBar />
-          <main className="h-full pt-20">{children}</main>
-        </AuthContextProvider>
+        <Theme>
+          <AuthContextProvider>
+            <Header />
+            <RepositoryActionBar />
+            <main className="h-full pt-20">{children}</main>
+          </AuthContextProvider>
+        </Theme>
       </body>
     </html>
   );
