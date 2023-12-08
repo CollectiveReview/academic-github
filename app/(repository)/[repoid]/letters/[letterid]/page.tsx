@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 const Viewer = dynamic(() => import("./Viewer"), { ssr: false });
 
 interface Props {
-    params: { letterid: string }
+    params: { repoid: string, letterid: string }
 }
 const LetterDetailPage = ({ params }: Props) => {
     // const letterRef = ref(rtdb, params.letterid);

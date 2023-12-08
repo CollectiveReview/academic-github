@@ -9,6 +9,8 @@ import { Button } from "@/app/components/ui/button";
 import { IndexeddbPersistence } from 'y-indexeddb'
 import { rtdb } from "@/app/api/firebase";
 import { ref, push, get, limitToLast, query } from "firebase/database"
+import { db } from "@/app/api/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const ydoc = new Y.Doc();
 const { WebsocketProvider } = require("y-websocket");
@@ -41,7 +43,6 @@ export default function Editor({ params }: Props) {
                 const latestPostKey = Object.keys(latestPost)[0];
                 const data = latestPost[latestPostKey].state
 
-                console.log(data)
                 const u8a = new Uint8Array(atob(data).split('').map(char => char.charCodeAt(0)));
                 Y.applyUpdate(ydoc, u8a)
             }}>Pull</Button>
@@ -55,10 +56,15 @@ export default function Editor({ params }: Props) {
                 });
             }}>Send Letter</Button>
 
-            <Button onClick={() => {
-
-
-            }}>test</Button>
+            <Button onClick={async () => {
+                const stateVec = Y.encodeStateAsUpdate(ydoc)
+                const state = btoa(String.fromCharCode.apply(null, Array.from(stateVec)));
+                const date = new Date()
+                await setDoc(doc(db, "repos", params.repoid), {
+                    state: state,
+                    timestamp: date.getTime()
+                });
+            }}>Push</Button>
             <BlockNoteView editor={editor} />
         </div>
     )
