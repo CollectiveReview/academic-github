@@ -5,13 +5,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const citiesRef = collection(db, "repos");
+    const reposRef = collection(db, "repos");
 
-    console.log(body)
-    const docRef = await setDoc(doc(citiesRef, "test_repo"), {
-        state: body.state
+    await setDoc(doc(reposRef), {
+        title: body.title,
+        description: body.description,
+        owner: "you",
     })
-    return NextResponse.json(docRef, { status: 201 })
+
+    return NextResponse.json("success", { status: 201 })
 }
 
 export async function GET() {
@@ -26,5 +28,6 @@ export async function GET() {
             data: doc.data()
         }
     ))
+    console.log(res)
     return NextResponse.json(res)
 }
