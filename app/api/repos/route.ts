@@ -15,19 +15,3 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json("success", { status: 201 })
 }
-
-export async function GET() {
-    const citiesRef = collection(db, "repos");
-
-    const q = query(citiesRef, limitToLast(1));
-    const querySnapshot = await getDocs(q)
-
-    const res = querySnapshot.docs.map(doc => (
-        {
-            id: doc.id,
-            data: doc.data()
-        }
-    ))
-    console.log(res)
-    return NextResponse.json(res)
-}
