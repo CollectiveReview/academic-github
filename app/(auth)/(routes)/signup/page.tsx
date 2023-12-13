@@ -22,6 +22,10 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/app/api/firebase";
+import { useRouter } from "next/navigation";
+
 const formSchema = z.object({
   username: z.string(),
   email: z.string(),
@@ -30,7 +34,8 @@ const formSchema = z.object({
   checked: z.boolean(),
 });
 
-const SignInPage = () => {
+const SignUpPage = () => {
+  const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,11 +47,20 @@ const SignInPage = () => {
       checked: false,
     },
   });
-
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    console.log("Success!", values);
+    const credential = createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        const uid = userCredential.user.uid;
+        router.push(`/users/${uid}`)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log(`${errorCode} ${errorMessage}`)
+      });
+
   }
 
   return (
@@ -181,4 +195,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

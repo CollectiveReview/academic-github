@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from 'next/image'
 import { Button } from "./components/ui/button";
-
+import { generateSVG } from "./components/gradient";
 
 export const metadata: Metadata = {
   title: "Academic GitHub | Homepage",
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const svg = generateSVG("asdf");
   return (
     <div >
       <div>

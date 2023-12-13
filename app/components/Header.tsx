@@ -17,7 +17,7 @@ const menuList = [
   },
   {
     name: "Sign In",
-    url: "/sign-in",
+    url: "/signup",
   },
 ];
 
@@ -71,7 +71,7 @@ const Header = () => {
                   Login
                 </Button>
               </Link>
-              <Link href="/sign-in">
+              <Link href="/signup">
                 <Button
                   className="text-gray-700 hover:text-black h-7"
                 >
