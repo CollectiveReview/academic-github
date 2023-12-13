@@ -10,15 +10,19 @@ Our goal is to establish a platform such that:
 ## Specification
 We are using:
 
-- Frontend: Next, Material UI, [TailwindCSS](https://tailwindcss.com/), firebase Hosting
-- Backend: Firebase Authentication(Sign in with Google), Realtime database (Save Metadata)
+- Frontend - Next, Radix UI, [TailwindCSS](https://tailwindcss.com/), 
+- Backend - Realtime database, FireStore, Firebase Authentication
+  - We are planning migration to Radis later. Contact me if you have experience in Radis and storing binary and structured data.
+- Great Libraries We use - [yjs](https://github.com/yjs/yjs)
 
 ## Getting Started
-Visit: 
+Visit: [gnt.place](https://www.gnt.place/)
 
 When you try this locally,
 
 First, run the development server:
+
+in top directory `npm install`
 
 ```bash
 npm run dev
@@ -30,57 +34,4 @@ pnpm dev
 bun dev
 ```
 
-in top directory `npm install`
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-then
-`npm run dev`
-or `next dev`
-
 make sure you have installed next in your global environment.
-
-### Deploy
-bash
-`npm run build`
-
-`firebase deploy --only hosting`
-
-
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
