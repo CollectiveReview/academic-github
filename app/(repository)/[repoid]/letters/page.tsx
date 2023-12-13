@@ -2,17 +2,26 @@ import React from 'react'
 import { Table, Card, Text } from '@radix-ui/themes'
 import Link from 'next/link';
 import '@radix-ui/themes/styles.css';
+import { rtdb } from "@/app/api/firebase";
+import { ref, push, get, limitToLast, query } from "firebase/database"
 
+interface Props {
+  params: { repoid: string }
+}
+interface Letter {
+  id: string;
+  createdAt: number;
+  comment: string;
+  status: string
+}
+interface Letters {
+  [key: string]: Letter;
+}
+const LettersListPage = async ({ params }: Props) => {
+  const letterRef = ref(rtdb, params.repoid);
+  const letterSnapshot = await get(query(letterRef, limitToLast(10)))
+  const letters: Letters = letterSnapshot.val()
 
-const LettersListPage = async () => {
-  const letters = [
-    {
-      id: "0",
-      createdat: "Dec 7 2022",
-      comment: "Great",
-      status: "Review",
-    }
-  ]
   return (
     <div>
       <Table.Root>
@@ -25,26 +34,16 @@ const LettersListPage = async () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {letters.map((letter) => (
-            <Table.Row key={letter.id}>
-              <Table.Cell><Link href={`./letters/${letter.id}`}>{letter.id}</Link></Table.Cell>
-              <Table.Cell>{letter.createdat}</Table.Cell>
-              <Table.Cell>{letter.comment}</Table.Cell>
-              <Table.Cell>{letter.status}</Table.Cell>
+          {Object.keys(letters).map((key: string) => (
+            <Table.Row key={key}>
+              <Table.Cell><Link href={`./letters/${key}`}>{key}</Link></Table.Cell>
+              <Table.Cell>{letters[key].status}</Table.Cell>
+              <Table.Cell>{letters[key].createdAt}</Table.Cell>
+              <Table.Cell>{letters[key].comment}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
       </Table.Root>
-      <Card asChild style={{ maxWidth: 300 }}>
-        <a href="/">
-          <Text as="div" size="2" weight="bold">
-            { }
-          </Text>
-          <Text as="div" color="gray" size="2">
-            Here comes the detail of the letter
-          </Text>
-        </a>
-      </Card>
     </div>
   )
 }

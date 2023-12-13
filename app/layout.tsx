@@ -20,7 +20,6 @@ export default function RootLayout({
         <Theme>
           <AuthContextProvider>
             <Header />
-            <RepositoryActionBar />
             <main className="h-full pt-20">{children}</main>
           </AuthContextProvider>
         </Theme>

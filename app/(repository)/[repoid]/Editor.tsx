@@ -10,7 +10,7 @@ import { IndexeddbPersistence } from 'y-indexeddb'
 import { rtdb } from "@/app/api/firebase";
 import { ref, push, get, limitToLast, query } from "firebase/database"
 import { db } from "@/app/api/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const ydoc = new Y.Doc();
 const { WebsocketProvider } = require("y-websocket");
@@ -37,22 +37,34 @@ export default function Editor({ params }: Props) {
     return (
         <div>
             <Button onClick={async () => {
-                const snapshot = await get(query(postListRef, limitToLast(1)));
+                const docRef = doc(db, "repos", params.repoid);
+                getDoc(docRef).then((latestdoc) => {
+                    const data = latestdoc.data()
 
-                const latestPost = snapshot.val();
-                const latestPostKey = Object.keys(latestPost)[0];
-                const data = latestPost[latestPostKey].state
+                    if (data) {
+                        console.log(data.state)
+                        const u8a = new Uint8Array(atob(data.state).split('').map(char => char.charCodeAt(0)));
+                        Y.applyUpdate(ydoc, u8a)
+                    }
+                    // const snapshot = await get(query(postListRef, limitToLast(1)));
 
-                const u8a = new Uint8Array(atob(data).split('').map(char => char.charCodeAt(0)));
-                Y.applyUpdate(ydoc, u8a)
+                    // const latestPost = snapshot.val();
+                    // const latestPostKey = Object.keys(latestPost)[0];
+                    // const data = latestPost[latestPostKey].stateVec
+
+                    // const u8a = new Uint8Array(atob(data).split('').map(char => char.charCodeAt(0)));
+                    // Y.applyUpdate(ydoc, u8a)
+                })
             }}>Pull</Button>
             <Button onClick={async () => {
                 const stateVec = Y.encodeStateAsUpdate(ydoc)
                 const state = btoa(String.fromCharCode.apply(null, Array.from(stateVec)));
                 const date = new Date()
                 await push(postListRef, {
-                    state: state,
-                    timestamp: date.getTime()
+                    status: "review",
+                    stateVec: state,
+                    comment: "",
+                    createdAt: date.getTime()
                 });
             }}>Send Letter</Button>
 

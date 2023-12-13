@@ -22,9 +22,9 @@ const RepositoryActionBar = () => {
   return (
     <div className="w-full bg-white-100 p-1  flex flex-row justify-between mt-16  items-center">
       <div className="flex items-centner m-2">
-        <ActionButton icon={<ScrollTextIcon />} name="Article" href="" />
-        <ActionButton icon={<CircleDot />} name="Issues" href="" />
-        <ActionButton icon={<GitPullRequestIcon />} name="Letters" href="" />
+        <ActionButton icon={<ScrollTextIcon />} text="Article" href="" />
+        <ActionButton icon={<CircleDot />} text="Issues" href="" />
+        <ActionButton icon={<GitPullRequestIcon />} text="Letters" href="" />
       </div>
       <div className="md:block hidden h-full items-center ">
         <div className="flex space-x-3 items-center h-full m-2 ">
