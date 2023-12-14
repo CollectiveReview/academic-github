@@ -22,7 +22,9 @@ import {
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
-import { UserAuth } from "@/app/api/AuthContext";
+import { useRouter } from "next/navigation";
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/app/api/firebase";
 
 const formSchema = z.object({
   email: z.string(),
@@ -30,15 +32,15 @@ const formSchema = z.object({
 });
 
 const LoginPage = () => {
-  const { user, googleSignIn, logOut } = UserAuth();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const checkAuthentication = async () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
     };
     checkAuthentication();
-  }, [user]);
+  }, []);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,27 +53,22 @@ const LoginPage = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    try {
-      handleSignIn();
-      console.log("Success!", values);
-    } catch (error) {
-      console.error("[Error]:", error);
-      alert(error);
-    }
+    console.log(values.email, values.password)
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => { router.push(`/users/${userCredential.user.uid}`) })
+      .catch((error) => { console.log(error.code, error.message) })
   }
 
-  const handleSignIn = async () => {
-    try {
-      await googleSignIn();
-
-      console.log(user.uid);
-      console.log(user.displayName);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((userCredential) => {
+        router.push(`/users/${userCredential.user.uid}`)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   return (
     <>
@@ -124,15 +121,15 @@ const LoginPage = () => {
 
                 <div className="flex justify-between">
                   <div className="flex items-center space-x-2">
-                    <Checkbox />
-                    <Label>Remember me</Label>
+                    {/* <Checkbox />
+                    <Label>Remember me</Label> */}
                   </div>
                   <div className="flex justify-between items-center">
                     <Link
                       href="/sign-in"
                       className="text-sm hover:text-gray-700"
                     >
-                      <p className="text-start underline">Forget Password</p>
+                      {/* <p className="text-start underline">Forgot Password</p> */}
                     </Link>
                   </div>
                 </div>
@@ -145,9 +142,18 @@ const LoginPage = () => {
                 </Button>
               </form>
             </Form>
+            <div className="py-5">
+              <Button
+                onClick={handleGoogleSignIn}
+                type="submit"
+                className="bg-red-400 w-full"
+              >
+                Sign in with Google
+              </Button>
+            </div>
             <Separator className="my-4" />
             <div className="w-full flex justify-between items-center">
-              <Link href="/sign-in" className="text-sm hover:text-gray-700">
+              <Link href="/signup" className="text-sm hover:text-gray-700">
                 <p className="text-start">Don`t have account?</p>
               </Link>
             </div>

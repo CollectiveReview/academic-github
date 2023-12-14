@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/app/api/firebase";
 import { useRouter } from "next/navigation";
 
@@ -36,6 +36,7 @@ const formSchema = z.object({
 
 const SignUpPage = () => {
   const router = useRouter();
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,7 +61,16 @@ const SignUpPage = () => {
 
         console.log(`${errorCode} ${errorMessage}`)
       });
-
+  }
+  const signUpwithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((userCredential) => {
+        router.push(`/users/${userCredential.user.uid}`)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -96,11 +106,7 @@ const SignUpPage = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="guest@example.com"
-                        {...field}
-                      />
+                      <Input type="text" placeholder="guest@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -110,14 +116,9 @@ const SignUpPage = () => {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
+                  <FormItem><FormLabel>Password</FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        type="password"
-                        placeholder="password"
-                        {...field}
-                      />
+                      <PasswordInput type="password" placeholder="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -183,14 +184,16 @@ const SignUpPage = () => {
               </Button>
             </form>
           </Form>
-          {/* <Separator className="my-4" />
-          <div className="w-full flex justify-between items-center">
-            <Link href="/sign-in" className="text-sm hover:text-gray-700">
-              <p className="text-start">Don`t have account?</p>
-            </Link>
-          </div> */}
+          <div >
+            <Button
+              className="bg-red-400 w-full"
+              onClick={signUpwithGoogle} >
+              Sign up with Google
+            </Button>
+          </div>
+
         </div>
-      </div>
+      </div >
     </>
   );
 };

@@ -31,6 +31,7 @@ const Header = () => {
     checkAuthentication();
   }, [user]);
 
+
   return (
     <div className="w-full bg-gray-100 p-1 shadow flex flex-row justify-between fixed items-center">
       <div className="flex items-centner m-2">

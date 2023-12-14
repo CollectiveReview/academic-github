@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Card, Text } from '@radix-ui/themes'
+import { Table } from '@radix-ui/themes'
 import Link from 'next/link';
 import '@radix-ui/themes/styles.css';
 import { rtdb } from "@/app/api/firebase";

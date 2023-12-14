@@ -5,16 +5,20 @@
     /* font-size: 36px; */
     @apply text-2xl;
   }
+
   h2 {
     /* font-size: 29px; */
     @apply text-xl;
   }
+
   h3 {
     font-size: 23px;
   }
+
   h4 {
     font-size: 18px;
   }
+
   h5 {
     font-size: 15px;
   }
@@ -92,6 +96,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

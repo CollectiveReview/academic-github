@@ -17,12 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} w-screen h-screen flex flex-col`}>
-        <Theme>
-          <AuthContextProvider>
-            <Header />
-            <main className="h-full pt-20">{children}</main>
-          </AuthContextProvider>
-        </Theme>
+
+        <AuthContextProvider>
+          <Theme>
+            <div className="sticky top-0 z-50">
+              <Header />
+            </div>
+            <main className="h-full pt-20 relative">{children}</main>
+          </Theme>
+        </AuthContextProvider>
       </body>
     </html>
   );
