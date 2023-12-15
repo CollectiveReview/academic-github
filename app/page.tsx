@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  const svg = generateSVG("asdf");
+  // const svg = generateSVG("asdf");
   return (
     <div >
       <div>

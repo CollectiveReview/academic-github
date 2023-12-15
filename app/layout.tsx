@@ -1,10 +1,7 @@
-"use client"
-
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { AuthContextProvider } from "./api/AuthContext";
 import Header from "@/app/components/Header";
-import RepositoryActionBar from "./components/RepositoryActionBar";
 import { Theme } from '@radix-ui/themes';
 
 const inter = Inter({ subsets: ["latin"] });
