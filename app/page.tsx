@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from 'next/image'
 import { Button } from "./components/ui/button";
 import { generateSVG } from "./components/gradient";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Academic GitHub | Homepage",
@@ -21,7 +22,7 @@ const Page = () => {
             objectFit: 'cover',
           }} />
       </div>
-      <Button>Show me example Repository</Button>
+      <Button><Link href={"./repos"}>Show me example Repository</Link></Button>
     </div>
   );
 };

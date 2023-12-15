@@ -15,14 +15,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} w-screen h-screen flex flex-col`}>
 
-        <AuthContextProvider>
-          <Theme>
+        <Theme>
+          <AuthContextProvider>
             <div className="sticky top-0 z-50">
               <Header />
             </div>
-            <main className="h-full pt-20 relative">{children}</main>
-          </Theme>
-        </AuthContextProvider>
+            <main className="h-full pt-20">{children}</main>
+          </AuthContextProvider>
+        </Theme>
       </body>
     </html>
   );
