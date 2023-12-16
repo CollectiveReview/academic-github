@@ -33,6 +33,7 @@ const RepositoryListPage = async () => {
                     <Table.Row>
                         <Table.Cell>Title</Table.Cell>
                         <Table.Cell>Owner</Table.Cell>
+                        <Table.Cell>Created At</Table.Cell>
                         <Table.Cell>Description</Table.Cell>
                     </Table.Row>
                 </Table.Header>
@@ -41,11 +42,16 @@ const RepositoryListPage = async () => {
                         <Table.Row key={repo.id}>
                             <Table.Cell><Link href={`./${repo.id}`}>{repo.data.title}</Link></Table.Cell>
                             <Table.Cell>{repo.data.owner}</Table.Cell>
-                            <Table.Cell>{repo.data.description}</Table.Cell>
+                            <Table.Cell></Table.Cell>
+
+                            <Table.Cell>
+                                <p className='w-[300px] line-clamp-2'>{repo.data.description}</p>
+                            </Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
             </Table.Root>
+            <div></div>
         </div>
     )
 }

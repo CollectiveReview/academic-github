@@ -5,5 +5,10 @@ interface Props {
     params: { repoid: string }
 }
 export default function RepositoryDetailPage({ params }: Props) {
-    return <Editor params={params} />;
+
+    return (
+        <div>
+            <Editor params={params} />
+        </div>
+    )
 }

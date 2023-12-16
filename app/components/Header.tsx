@@ -9,9 +9,6 @@ import Link from "next/link";
 // import { UserAuth } from "@/app/api/AuthContext";
 import ProfileMenu from "@/app/components/custom/profileMenu";
 import { UserAuth } from '../api/AuthContext';
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../api/firebase";
-import { usePathname, useRouter } from "next/navigation";
 
 const menuList = [
   {
@@ -27,8 +24,6 @@ const menuList = [
 
 const Header = () => {
   const { user, logOut } = UserAuth();
-  const pathname = usePathname()
-  const [title, setTitle] = useState("");
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -37,21 +32,6 @@ const Header = () => {
     checkAuthentication();
   }, [user]);
 
-
-  useEffect(() => {
-    if (pathname !== "/") {
-      console.log(pathname)
-      const docRef = doc(db, "repos", pathname);
-      getDoc(docRef)
-        .then((snapshot) => {
-          setTitle(snapshot.data()?.title)
-        })
-        .catch(() => {
-
-        })
-    }
-
-  }, [pathname])
 
 
   return (
@@ -65,10 +45,6 @@ const Header = () => {
             <HomeIcon />
           </Button>
         </Link>
-        <div className="flex px-3 items-center">
-
-          <h5 className="text-gray-500 ">{title}</h5>
-        </div>
       </div>
       <div className="md:block hidden h-full items-center ">
         <div className="flex space-x-3 items-center h-full m-2 ">
