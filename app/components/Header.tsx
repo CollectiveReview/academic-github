@@ -17,9 +17,10 @@ const menuList = [
   },
   {
     name: "Sign In",
-    url: "/sign-in",
+    url: "/signup",
   },
 ];
+
 
 const Header = () => {
   const { user, logOut } = UserAuth();
@@ -30,6 +31,8 @@ const Header = () => {
     };
     checkAuthentication();
   }, [user]);
+
+
 
   return (
     <div className="w-full bg-gray-100 p-1 shadow flex flex-row justify-between fixed items-center">
@@ -42,10 +45,6 @@ const Header = () => {
             <HomeIcon />
           </Button>
         </Link>
-        <div className="flex px-3 items-center">
-
-          <h5 className="text-gray-500 ">Sample Repository Title</h5>
-        </div>
       </div>
       <div className="md:block hidden h-full items-center ">
         <div className="flex space-x-3 items-center h-full m-2 ">
@@ -71,7 +70,7 @@ const Header = () => {
                   Login
                 </Button>
               </Link>
-              <Link href="/sign-in">
+              <Link href="/signup">
                 <Button
                   className="text-gray-700 hover:text-black h-7"
                 >

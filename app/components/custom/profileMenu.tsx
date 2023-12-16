@@ -26,7 +26,7 @@ const ProfileMenu = () => {
         <DropdownMenuTrigger asChild>
           <Avatar>
             <AvatarImage
-              src="/assets/images/avatar1.jpg"
+              src="/assets/images/user1.jpg"
               alt="login"
               className="object-cover object-center"
             />

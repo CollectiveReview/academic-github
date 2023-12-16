@@ -1,43 +1,58 @@
 import React from 'react'
-import { collection, doc, getDoc, limitToLast, setDoc } from "firebase/firestore";
+import { DocumentData, collection, doc, getDoc, limitToLast, orderBy, setDoc, startAt } from "firebase/firestore";
 import { query, where, getDocs } from "firebase/firestore";
 import { db } from "@/app/api/firebase";
 import { Table } from '@radix-ui/themes';
+import Link from 'next/link';
+import '@radix-ui/themes/styles.css';
+import { limitToFirst } from 'firebase/database';
 
+
+interface Repo {
+    id: string,
+    data: DocumentData
+}
 const RepositoryListPage = async () => {
     const citiesRef = collection(db, "repos");
 
-    const q = query(citiesRef, where("description", "==", "d"));
+    const q = query(citiesRef, orderBy("title"), startAt(20));
     const querySnapshot = await getDocs(q)
 
-    const res = querySnapshot.docs.map(doc => (
+    const repos = querySnapshot.docs.map(doc => (
         {
             id: doc.id,
             data: doc.data()
         }
     ))
 
+
     return (
-        <Table.Root>
-            <Table.Header>
-                <Table.Row>
-                    <Table.Cell>ID</Table.Cell>
-                    <Table.Cell>Created At</Table.Cell>
-                    <Table.Cell>Comment</Table.Cell>
-                    <Table.Cell>Status</Table.Cell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {/* {Object.keys(letters).map((key: string) => (
-                    <Table.Row key={key}>
-                        <Table.Cell><Link href={`./letters/${key}`}>{key}</Link></Table.Cell>
-                        <Table.Cell>{letters[key].status}</Table.Cell>
-                        <Table.Cell>{letters[key].createdAt}</Table.Cell>
-                        <Table.Cell>{letters[key].comment}</Table.Cell>
+        <div>
+            <Table.Root>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.Cell>Title</Table.Cell>
+                        <Table.Cell>Owner</Table.Cell>
+                        <Table.Cell>Created At</Table.Cell>
+                        <Table.Cell>Description</Table.Cell>
                     </Table.Row>
-                ))} */}
-            </Table.Body>
-        </Table.Root>
+                </Table.Header>
+                <Table.Body>
+                    {repos.map((repo: Repo) => (
+                        <Table.Row key={repo.id}>
+                            <Table.Cell><Link href={`./${repo.id}`}>{repo.data.title}</Link></Table.Cell>
+                            <Table.Cell>{repo.data.owner}</Table.Cell>
+                            <Table.Cell></Table.Cell>
+
+                            <Table.Cell>
+                                <p className='w-[300px] line-clamp-2'>{repo.data.description}</p>
+                            </Table.Cell>
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+            </Table.Root>
+            <div></div>
+        </div>
     )
 }
 
