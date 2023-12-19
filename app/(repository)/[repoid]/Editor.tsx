@@ -21,7 +21,7 @@ interface Props {
 }
 export default function Editor({ params }: Props) {
     const provider = collaboration ?
-        new WebsocketProvider("ws://34.83.179.84", params.repoid, ydoc) :
+        new WebsocketProvider("wss://34.83.179.84", params.repoid, ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
 
     const postListRef = ref(rtdb, params.repoid);
