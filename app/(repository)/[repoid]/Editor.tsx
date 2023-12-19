@@ -14,14 +14,14 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const ydoc = new Y.Doc();
 const { WebsocketProvider } = require("y-websocket");
-const collaboration = false
+const collaboration = true
 
 interface Props {
     params: { repoid: string }
 }
 export default function Editor({ params }: Props) {
     const provider = collaboration ?
-        new WebsocketProvider("ws://localhost:8080", params.repoid, ydoc) :
+        new WebsocketProvider("ws://34.83.179.84", params.repoid, ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
 
     const postListRef = ref(rtdb, params.repoid);
