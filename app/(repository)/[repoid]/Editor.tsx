@@ -16,7 +16,7 @@ interface Props {
 }
 export default function Editor({ params }: Props) {
     const provider = collaboration ?
-        new WebsocketProvider("wss://io.gnt.place", "", ydoc) :
+        new WebsocketProvider("wss://io.gnt.place", params.repoid, ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
 
     const editor: BlockNoteEditor | null = useBlockNote({
