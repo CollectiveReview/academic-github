@@ -1,28 +1,34 @@
-import type { Metadata } from "next";
-import Image from 'next/image'
-import { Button } from "./components/ui/button";
-import Link from "next/link";
+import type { Metadata } from "next"
+import Image from "next/image"
+import { Button } from "./components/ui/button"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Academic GitHub | Homepage",
   description: "",
-};
+}
 
 const Page = () => {
   return (
-    <div >
+    <div>
       <div>
-        <Image className="-z-50" src="/hero.png" alt="crouching giant"
+        <Image
+          className="-z-50"
+          src="/hero.png"
+          alt="crouching giant"
           quality={100}
           fill
           sizes="100vw"
           style={{
-            objectFit: 'cover',
-          }} />
+            objectFit: "cover",
+          }}
+        />
       </div>
-      <Button><Link href={"./repos"}>Show me example Repository</Link></Button>
+      <Button>
+        <Link href={"./repos"}>Show me example Repository</Link>
+      </Button>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

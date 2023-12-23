@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react"
 
 const UserContributionDetailPage = () => {
-  return (
-    <div>GroupContributionDetailPage</div>
-  )
+  return <div>GroupContributionDetailPage</div>
 }
 
 export default UserContributionDetailPage

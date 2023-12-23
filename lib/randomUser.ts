@@ -1,12 +1,4 @@
-const colors = [
-  "#958DF1",
-  "#F98181",
-  "#FBBC88",
-  "#FAF594",
-  "#70CFF8",
-  "#94FADB",
-  "#B9F18D",
-];
+const colors = ["#958DF1", "#F98181", "#FBBC88", "#FAF594", "#70CFF8", "#94FADB", "#B9F18D"]
 
 // some random gpt generated names
 const names = [
@@ -25,15 +17,14 @@ const names = [
   "Bullet Liston",
   "Autonomy Backspace",
   "Ctrl Zedson",
-];
+]
 
-const getRandomElement = <T>(list: T[]) =>
-  list[Math.floor(Math.random() * list.length)];
+const getRandomElement = <T>(list: T[]) => list[Math.floor(Math.random() * list.length)]
 
-const getRandomColor = () => getRandomElement(colors);
-const getRandomName = () => getRandomElement(names);
+const getRandomColor = () => getRandomElement(colors)
+const getRandomName = () => getRandomElement(names)
 
 export const getRandomUser = () => ({
   name: getRandomName(),
   color: getRandomColor(),
-});
+})

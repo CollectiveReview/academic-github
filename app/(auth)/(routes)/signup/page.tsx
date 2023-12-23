@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { Input } from "@/app/components/ui/input";
-import { PasswordInput } from "@/app/components/custom/passwordInput";
-import { Button } from "@/app/components/ui/button";
-import Link from "next/link";
-import { Checkbox } from "@/app/components/ui/checkbox";
-import { Label } from "@/app/components/ui/label";
+import { Input } from "@/app/components/ui/input"
+import { PasswordInput } from "@/app/components/custom/passwordInput"
+import { Button } from "@/app/components/ui/button"
+import Link from "next/link"
+import { Checkbox } from "@/app/components/ui/checkbox"
+import { Label } from "@/app/components/ui/label"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import {
   Form,
   FormControl,
@@ -17,14 +17,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/components/ui/form";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
-import { Separator } from "@/app/components/ui/separator";
+} from "@/app/components/ui/form"
+import { useForm } from "react-hook-form"
+import Image from "next/image"
+import { Separator } from "@/app/components/ui/separator"
 
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "@/app/api/firebase";
-import { useRouter } from "next/navigation";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth } from "@/app/api/firebase"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
   username: z.string(),
@@ -32,10 +32,10 @@ const formSchema = z.object({
   password: z.string(),
   checkPassword: z.string(),
   checked: z.boolean(),
-});
+})
 
 const SignUpPage = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,23 +47,23 @@ const SignUpPage = () => {
       checkPassword: "",
       checked: false,
     },
-  });
+  })
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const credential = createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        const uid = userCredential.user.uid;
+        const uid = userCredential.user.uid
         router.push(`/users/${uid}`)
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        const errorCode = error.code
+        const errorMessage = error.message
 
         console.log(`${errorCode} ${errorMessage}`)
-      });
+      })
   }
   const signUpwithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider)
       .then((userCredential) => {
         router.push(`/users/${userCredential.user.uid}`)
@@ -81,10 +81,7 @@ const SignUpPage = () => {
             <h2>Create an account</h2>
           </div>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 w-full"
-            >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
               <FormField
                 control={form.control}
                 name="username"
@@ -116,7 +113,8 @@ const SignUpPage = () => {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem><FormLabel>Password</FormLabel>
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <PasswordInput type="password" placeholder="password" {...field} />
                     </FormControl>
@@ -131,11 +129,7 @@ const SignUpPage = () => {
                   <FormItem>
                     <FormLabel>Check Password</FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        type="password"
-                        placeholder="Check password"
-                        {...field}
-                      />
+                      <PasswordInput type="password" placeholder="Check password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,10 +141,7 @@ const SignUpPage = () => {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md  py-1 ">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
 
                     <FormLabel>
@@ -163,9 +154,7 @@ const SignUpPage = () => {
                                 Terms of service
                               </span>
                               {" and "}
-                              <span className="text-gray-700 hover:text-black">
-                                privacy policy
-                              </span>
+                              <span className="text-gray-700 hover:text-black">privacy policy</span>
                             </p>
                           </Label>
                         </div>
@@ -176,26 +165,20 @@ const SignUpPage = () => {
                 )}
               />
 
-              <Button
-                type="submit"
-                className="bg-gray-700 w-full"
-              >
+              <Button type="submit" className="bg-gray-700 w-full">
                 SUBMIT
               </Button>
             </form>
           </Form>
-          <div >
-            <Button
-              className="bg-red-400 w-full"
-              onClick={signUpwithGoogle} >
+          <div>
+            <Button className="bg-red-400 w-full" onClick={signUpwithGoogle}>
               Sign up with Google
             </Button>
           </div>
-
         </div>
-      </div >
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage

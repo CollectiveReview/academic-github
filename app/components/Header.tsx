@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { HomeIcon } from "lucide-react";
-import { SearchInput } from "@/app/components/custom/searchInput";
-import MobileDropdownMenu from "./custom/mobileDropdownList";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import React, { useState, useEffect } from "react"
+import { HomeIcon } from "lucide-react"
+import { SearchInput } from "@/app/components/custom/searchInput"
+import MobileDropdownMenu from "./custom/mobileDropdownList"
+import { Button } from "./ui/button"
+import Link from "next/link"
 // import { UserAuth } from "@/app/api/AuthContext";
-import ProfileMenu from "@/app/components/custom/profileMenu";
-import { UserAuth } from '../api/AuthContext';
+import ProfileMenu from "@/app/components/custom/profileMenu"
+import { UserAuth } from "../api/AuthContext"
 
 const menuList = [
   {
@@ -19,20 +19,17 @@ const menuList = [
     name: "Sign In",
     url: "/signup",
   },
-];
-
+]
 
 const Header = () => {
-  const { user, logOut } = UserAuth();
+  const { user, logOut } = UserAuth()
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 50));
-    };
-    checkAuthentication();
-  }, [user]);
-
-
+      await new Promise((resolve) => setTimeout(resolve, 50))
+    }
+    checkAuthentication()
+  }, [user])
 
   return (
     <div className="w-full bg-gray-100 p-1 shadow flex flex-row justify-between fixed items-center">
@@ -55,8 +52,7 @@ const Header = () => {
             <div>
               <button onClick={logOut}>Logout</button>
             </div>
-          ) : null
-          }
+          ) : null}
           {user ? (
             <div>
               <ProfileMenu />
@@ -64,18 +60,10 @@ const Header = () => {
           ) : (
             <>
               <Link href="/login" className="border border-gray-200 rounded">
-                <Button
-                  className="text-gray-700 hover:text-black h-7"
-                >
-                  Login
-                </Button>
+                <Button className="text-gray-700 hover:text-black h-7">Login</Button>
               </Link>
               <Link href="/signup">
-                <Button
-                  className="text-gray-700 hover:text-black h-7"
-                >
-                  Sign Up
-                </Button>
+                <Button className="text-gray-700 hover:text-black h-7">Sign Up</Button>
               </Link>
             </>
           )}
@@ -85,7 +73,7 @@ const Header = () => {
         <MobileDropdownMenu menuList={menuList} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

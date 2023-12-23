@@ -1,24 +1,24 @@
-import React from 'react'
-import { Table } from '@radix-ui/themes'
-import Link from 'next/link';
-import '@radix-ui/themes/styles.css';
-import { rtdb } from "@/app/api/firebase";
+import React from "react"
+import { Table } from "@radix-ui/themes"
+import Link from "next/link"
+import "@radix-ui/themes/styles.css"
+import { rtdb } from "@/app/api/firebase"
 import { ref, push, get, limitToLast, query } from "firebase/database"
 
 interface Props {
   params: { repoid: string }
 }
 interface Letter {
-  id: string;
-  createdAt: number;
-  comment: string;
+  id: string
+  createdAt: number
+  comment: string
   status: string
 }
 interface Letters {
-  [key: string]: Letter;
+  [key: string]: Letter
 }
 const LettersListPage = async ({ params }: Props) => {
-  const letterRef = ref(rtdb, params.repoid);
+  const letterRef = ref(rtdb, params.repoid)
   const letterSnapshot = await get(query(letterRef, limitToLast(10)))
   const letters: Letters = letterSnapshot.val()
 
@@ -36,7 +36,9 @@ const LettersListPage = async ({ params }: Props) => {
         <Table.Body>
           {Object.keys(letters).map((key: string) => (
             <Table.Row key={key}>
-              <Table.Cell><Link href={`./letters/${key}`}>{key}</Link></Table.Cell>
+              <Table.Cell>
+                <Link href={`./letters/${key}`}>{key}</Link>
+              </Table.Cell>
               <Table.Cell>{letters[key].status}</Table.Cell>
               <Table.Cell>{letters[key].createdAt}</Table.Cell>
               <Table.Cell>{letters[key].comment}</Table.Cell>

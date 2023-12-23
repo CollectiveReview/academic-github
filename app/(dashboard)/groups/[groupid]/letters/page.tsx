@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react"
 
 const GroupLetterListPage = () => {
-    return (
-        <div>GroupLetterListPage</div>
-    )
+  return <div>GroupLetterListPage</div>
 }
 
 export default GroupLetterListPage
