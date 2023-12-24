@@ -1,13 +1,13 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import { ReactNode } from "react"
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 interface ActionButton {
-  icon: ReactNode
-  text: string
-  href: string
+  icon: ReactNode;
+  text: string;
+  href: string;
 }
 
 const ActionButton = ({ icon, text, href }: ActionButton) => {
@@ -22,7 +22,7 @@ const ActionButton = ({ icon, text, href }: ActionButton) => {
         {text}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export { ActionButton }
+export { ActionButton };

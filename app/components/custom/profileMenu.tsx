@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar"
-import { Button } from "@/app/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
+import { Button } from "@/app/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/app/components/ui/dropdown-menu"
+} from "@/app/components/ui/dropdown-menu";
 
 const ProfileMenu = () => {
   return (
@@ -81,7 +81,7 @@ const ProfileMenu = () => {
         </DropdownMenuContent>
       </DropdownMenu>
     </>
-  )
-}
+  );
+};
 
-export default ProfileMenu
+export default ProfileMenu;

@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { MenuIcon, XIcon } from "lucide-react"
-import { ChevronDownIcon } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { MenuIcon, XIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 
 interface Menu {
-  name: string
-  url: string
-  subMenu?: { name: string; url: string }[]
+  name: string;
+  url: string;
+  subMenu?: { name: string; url: string }[];
 }
 
 interface DropdownMenuProps {
-  menuList: Menu[]
+  menuList: Menu[];
 }
 
 const MobileDropdownMenu: React.FC<DropdownMenuProps> = ({ menuList }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
 
   const toggleSubMenu = (index: number) => {
     if (openSubMenuIndex === index) {
-      setOpenSubMenuIndex(null)
+      setOpenSubMenuIndex(null);
     } else {
-      setOpenSubMenuIndex(index)
+      setOpenSubMenuIndex(index);
     }
-  }
+  };
 
   return (
     <>
@@ -75,8 +75,8 @@ const MobileDropdownMenu: React.FC<DropdownMenuProps> = ({ menuList }) => {
                             <Link
                               href={`${subItem.url}`}
                               onClick={() => {
-                                setIsOpen(false)
-                                setOpenSubMenuIndex(null)
+                                setIsOpen(false);
+                                setOpenSubMenuIndex(null);
                               }}
                             >
                               {subItem.name}
@@ -93,7 +93,7 @@ const MobileDropdownMenu: React.FC<DropdownMenuProps> = ({ menuList }) => {
         </div>
       }
     </>
-  )
-}
+  );
+};
 
-export default MobileDropdownMenu
+export default MobileDropdownMenu;

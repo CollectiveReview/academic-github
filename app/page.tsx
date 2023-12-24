@@ -1,12 +1,12 @@
-import type { Metadata } from "next"
-import Image from "next/image"
-import { Button } from "./components/ui/button"
-import Link from "next/link"
+import type { Metadata } from "next";
+import Image from "next/image";
+import { Button } from "./components/ui/button";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Academic GitHub | Homepage",
   description: "",
-}
+};
 
 const Page = () => {
   return (
@@ -28,7 +28,7 @@ const Page = () => {
         <Link href={"./repos"}>Show me example Repository</Link>
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

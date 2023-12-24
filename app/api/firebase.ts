@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app"
-import { getAuth } from "firebase/auth"
-import { getFirestore } from "firebase/firestore"
-import { getDatabase } from "firebase/database"
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,10 +14,10 @@ const firebaseConfig = {
   messagingSenderId: "459953287631",
   appId: "1:459953287631:web:d988dd69db540bed08a2ba",
   measurementId: "G-Z0P2MKNDR7",
-}
+};
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
-export const db = getFirestore()
-export const rtdb = getDatabase(app)
-export const auth = getAuth(app)
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore();
+export const rtdb = getDatabase(app);
+export const auth = getAuth(app);

@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { Input } from "@/app/components/ui/input"
-import { PasswordInput } from "@/app/components/custom/passwordInput"
-import { Button } from "@/app/components/ui/button"
-import Link from "next/link"
-import { Checkbox } from "@/app/components/ui/checkbox"
-import { Label } from "@/app/components/ui/label"
+import { Input } from "@/app/components/ui/input";
+import { PasswordInput } from "@/app/components/custom/passwordInput";
+import { Button } from "@/app/components/ui/button";
+import Link from "next/link";
+import { Checkbox } from "@/app/components/ui/checkbox";
+import { Label } from "@/app/components/ui/label";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -17,14 +17,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/components/ui/form"
-import { useForm } from "react-hook-form"
-import Image from "next/image"
-import { Separator } from "@/app/components/ui/separator"
+} from "@/app/components/ui/form";
+import { useForm } from "react-hook-form";
+import Image from "next/image";
+import { Separator } from "@/app/components/ui/separator";
 
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { auth } from "@/app/api/firebase"
-import { useRouter } from "next/navigation"
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/app/api/firebase";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string(),
@@ -32,10 +32,10 @@ const formSchema = z.object({
   password: z.string(),
   checkPassword: z.string(),
   checked: z.boolean(),
-})
+});
 
 const SignUpPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,31 +47,31 @@ const SignUpPage = () => {
       checkPassword: "",
       checked: false,
     },
-  })
+  });
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const credential = createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        const uid = userCredential.user.uid
-        router.push(`/users/${uid}`)
+        const uid = userCredential.user.uid;
+        router.push(`/users/${uid}`);
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-        console.log(`${errorCode} ${errorMessage}`)
-      })
+        console.log(`${errorCode} ${errorMessage}`);
+      });
   }
   const signUpwithGoogle = async () => {
-    const provider = new GoogleAuthProvider()
+    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        router.push(`/users/${userCredential.user.uid}`)
+        router.push(`/users/${userCredential.user.uid}`);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -178,7 +178,7 @@ const SignUpPage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;

@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import { UserAuth } from "../api/AuthContext"
-import { ActionButton } from "./custom/actionButton"
+import React, { useState, useEffect } from "react";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { UserAuth } from "../api/AuthContext";
+import { ActionButton } from "./custom/actionButton";
 
-import { CircleDot, GitPullRequestIcon, ScrollTextIcon } from "lucide-react"
-import { Router } from "next/router"
+import { CircleDot, GitPullRequestIcon, ScrollTextIcon } from "lucide-react";
+import { Router } from "next/router";
 
 const RepositoryActionBar = () => {
-  const { user, logOut } = UserAuth()
+  const { user, logOut } = UserAuth();
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 50))
-    }
-    checkAuthentication()
-  }, [user])
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    };
+    checkAuthentication();
+  }, [user]);
 
   return (
     <div className="w-full bg-white-100 p-1  flex flex-row justify-between mt-16  items-center">
@@ -42,7 +42,7 @@ const RepositoryActionBar = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RepositoryActionBar
+export default RepositoryActionBar;

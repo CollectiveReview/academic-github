@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 const UserRepoListPage = () => {
-  return <div>GroupRepoListPage</div>
-}
+  return <div>GroupRepoListPage</div>;
+};
 
-export default UserRepoListPage
+export default UserRepoListPage;

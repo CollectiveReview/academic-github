@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
-    const [showPassword, setShowPassword] = React.useState(false)
+    const [showPassword, setShowPassword] = React.useState(false);
 
     return (
       <div className="relative">
@@ -29,9 +29,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           {showPassword ? <EyeIcon className="h-5 w-5" /> : <EyeOffIcon className="h-5 w-5" />}
         </button>
       </div>
-    )
+    );
   }
-)
-PasswordInput.displayName = "PasswordInput"
+);
+PasswordInput.displayName = "PasswordInput";
 
-export { PasswordInput }
+export { PasswordInput };

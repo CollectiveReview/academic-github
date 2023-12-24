@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import { Input } from "@/app/components/ui/input"
-import { PasswordInput } from "@/app/components/custom/passwordInput"
-import { Button } from "@/app/components/ui/button"
-import Link from "next/link"
-import { Checkbox } from "@/app/components/ui/checkbox"
-import { Label } from "@/app/components/ui/label"
+import React, { useState, useEffect } from "react";
+import { Input } from "@/app/components/ui/input";
+import { PasswordInput } from "@/app/components/custom/passwordInput";
+import { Button } from "@/app/components/ui/button";
+import Link from "next/link";
+import { Checkbox } from "@/app/components/ui/checkbox";
+import { Label } from "@/app/components/ui/label";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -18,29 +18,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/components/ui/form"
-import { useForm } from "react-hook-form"
-import Image from "next/image"
-import { Separator } from "@/app/components/ui/separator"
-import { useRouter } from "next/navigation"
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "@/app/api/firebase"
+} from "@/app/components/ui/form";
+import { useForm } from "react-hook-form";
+import Image from "next/image";
+import { Separator } from "@/app/components/ui/separator";
+import { useRouter } from "next/navigation";
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/app/api/firebase";
 
 const formSchema = z.object({
   email: z.string(),
   password: z.string(),
-})
+});
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(true)
-  const router = useRouter()
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 50))
-    }
-    checkAuthentication()
-  }, [])
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    };
+    checkAuthentication();
+  }, []);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,30 +49,30 @@ const LoginPage = () => {
       email: "",
       password: "",
     },
-  })
+  });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values.email, values.password)
+    console.log(values.email, values.password);
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        router.push(`/users/${userCredential.user.uid}`)
+        router.push(`/users/${userCredential.user.uid}`);
       })
       .catch((error) => {
-        console.log(error.code, error.message)
-      })
+        console.log(error.code, error.message);
+      });
   }
 
   const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider()
+    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        router.push(`/users/${userCredential.user.uid}`)
+        router.push(`/users/${userCredential.user.uid}`);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -152,7 +152,7 @@ const LoginPage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import { SearchIcon } from "lucide-react"
+import { cn } from "@/lib/utils";
+import { SearchIcon } from "lucide-react";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
@@ -24,9 +24,9 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
           </button>
         </div>
       </div>
-    )
+    );
   }
-)
-SearchInput.displayName = "SearchInput"
+);
+SearchInput.displayName = "SearchInput";
 
-export { SearchInput }
+export { SearchInput };

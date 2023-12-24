@@ -1,10 +1,10 @@
-import "./globals.css"
-import { Inter } from "next/font/google"
-import { AuthContextProvider } from "./api/AuthContext"
-import Header from "@/app/components/Header"
-import { Theme } from "@radix-ui/themes"
+import "./globals.css";
+import { Inter } from "next/font/google";
+import { AuthContextProvider } from "./api/AuthContext";
+import Header from "@/app/components/Header";
+import { Theme } from "@radix-ui/themes";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,5 +20,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </AuthContextProvider>
       </body>
     </html>
-  )
+  );
 }

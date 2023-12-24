@@ -1,26 +1,26 @@
-import React from "react"
-import { Table } from "@radix-ui/themes"
-import Link from "next/link"
-import "@radix-ui/themes/styles.css"
-import { rtdb } from "@/app/api/firebase"
-import { ref, push, get, limitToLast, query } from "firebase/database"
+import React from "react";
+import { Table } from "@radix-ui/themes";
+import Link from "next/link";
+import "@radix-ui/themes/styles.css";
+import { rtdb } from "@/app/api/firebase";
+import { ref, push, get, limitToLast, query } from "firebase/database";
 
 interface Props {
-  params: { repoid: string }
+  params: { repoid: string };
 }
 interface Letter {
-  id: string
-  createdAt: number
-  comment: string
-  status: string
+  id: string;
+  createdAt: number;
+  comment: string;
+  status: string;
 }
 interface Letters {
-  [key: string]: Letter
+  [key: string]: Letter;
 }
 const LettersListPage = async ({ params }: Props) => {
-  const letterRef = ref(rtdb, params.repoid)
-  const letterSnapshot = await get(query(letterRef, limitToLast(10)))
-  const letters: Letters = letterSnapshot.val()
+  const letterRef = ref(rtdb, params.repoid);
+  const letterSnapshot = await get(query(letterRef, limitToLast(10)));
+  const letters: Letters = letterSnapshot.val();
 
   return (
     <div>
@@ -47,7 +47,7 @@ const LettersListPage = async ({ params }: Props) => {
         </Table.Body>
       </Table.Root>
     </div>
-  )
-}
+  );
+};
 
-export default LettersListPage
+export default LettersListPage;

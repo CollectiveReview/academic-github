@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   DocumentData,
   collection,
@@ -8,28 +8,28 @@ import {
   orderBy,
   setDoc,
   startAt,
-} from "firebase/firestore"
-import { query, where, getDocs } from "firebase/firestore"
-import { db } from "@/app/api/firebase"
-import { Button, Table } from "@radix-ui/themes"
-import Link from "next/link"
-import "@radix-ui/themes/styles.css"
-import { limitToFirst } from "firebase/database"
+} from "firebase/firestore";
+import { query, where, getDocs } from "firebase/firestore";
+import { db } from "@/app/api/firebase";
+import { Button, Table } from "@radix-ui/themes";
+import Link from "next/link";
+import "@radix-ui/themes/styles.css";
+import { limitToFirst } from "firebase/database";
 
 interface Repo {
-  id: string
-  data: DocumentData
+  id: string;
+  data: DocumentData;
 }
 const RepositoryListPage = async () => {
-  const citiesRef = collection(db, "repos")
+  const citiesRef = collection(db, "repos");
 
-  const q = query(citiesRef, orderBy("title"), startAt(20))
-  const querySnapshot = await getDocs(q)
+  const q = query(citiesRef, orderBy("title"), startAt(20));
+  const querySnapshot = await getDocs(q);
 
   const repos = querySnapshot.docs.map((doc) => ({
     id: doc.id,
     data: doc.data(),
-  }))
+  }));
 
   return (
     <div>
@@ -63,7 +63,7 @@ const RepositoryListPage = async () => {
       </Table.Root>
       <div></div>
     </div>
-  )
-}
+  );
+};
 
-export default RepositoryListPage
+export default RepositoryListPage;

@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 const GroupContributorsListPage = () => {
-  return <div>GroupContributionDetailPage</div>
-}
+  return <div>GroupContributionDetailPage</div>;
+};
 
-export default GroupContributorsListPage
+export default GroupContributorsListPage;
