@@ -1,9 +1,8 @@
-import React from "react";
-import { Table } from "@radix-ui/themes";
-import Link from "next/link";
-import "@radix-ui/themes/styles.css";
 import { rtdb } from "@/app/api/firebase";
-import { ref, push, get, limitToLast, query } from "firebase/database";
+import { Table } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
+import { get, limitToLast, query, ref } from "firebase/database";
+import Link from "next/link";
 
 interface Props {
   params: { repoid: string };

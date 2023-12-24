@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import { useEffect } from "react";
 import { UserAuth } from "../api/AuthContext";
 import { ActionButton } from "./custom/actionButton";
+import { Button } from "./ui/button";
 
 import { CircleDot, GitPullRequestIcon, ScrollTextIcon } from "lucide-react";
-import { Router } from "next/router";
 
 const RepositoryActionBar = () => {
-  const { user, logOut } = UserAuth();
+  const { user } = UserAuth();
 
   useEffect(() => {
     const checkAuthentication = async () => {

@@ -1,30 +1,26 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Input } from "@/app/components/ui/input";
-import { PasswordInput } from "@/app/components/custom/passwordInput";
 import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
 import Link from "next/link";
-import { Checkbox } from "@/app/components/ui/checkbox";
-import { Label } from "@/app/components/ui/label";
+import { useEffect } from "react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { auth } from "@/app/api/firebase";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/app/components/ui/form";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/app/api/firebase";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const formSchema = z.object({
   email: z.string(),
@@ -32,7 +28,6 @@ const formSchema = z.object({
 });
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {

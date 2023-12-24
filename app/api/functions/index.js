@@ -1,11 +1,14 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const functions = require("firebase-functions");
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cors = require("cors")({
   origin: true,
 });
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const admin = require("firebase-admin");
 admin.initializeApp();
 

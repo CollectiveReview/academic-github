@@ -1,7 +1,6 @@
-import { collection, doc, getDoc, limitToLast, setDoc } from "firebase/firestore";
-import { query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
+import { db } from "../firebase";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();

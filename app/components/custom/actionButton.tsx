@@ -10,7 +10,7 @@ interface ActionButton {
   href: string;
 }
 
-const ActionButton = ({ icon, text, href }: ActionButton) => {
+const ActionButton = ({ icon, text }: ActionButton) => {
   return (
     <div className="flex items-center bg-white border rounded min-w-[300px]">
       <div className=" px-2">{icon}</div>

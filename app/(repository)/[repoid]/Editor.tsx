@@ -1,19 +1,18 @@
 "use client";
 
-import { BlockNoteEditor } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
-import "@blocknote/core/style.css";
-import { getRandomUser } from "@/lib/randomUser";
-import * as Y from "yjs";
+import { db, rtdb } from "@/app/api/firebase";
 import { Button } from "@/app/components/ui/button";
-import { IndexeddbPersistence } from "y-indexeddb";
-import { rtdb } from "@/app/api/firebase";
-import { ref, push } from "firebase/database";
-import { db } from "@/app/api/firebase";
+import { getRandomUser } from "@/lib/randomUser";
+import { BlockNoteEditor } from "@blocknote/core";
+import "@blocknote/core/style.css";
+import { BlockNoteView, useBlockNote } from "@blocknote/react";
+import { push, ref } from "firebase/database";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { IndexeddbPersistence } from "y-indexeddb";
+import { WebsocketProvider } from "y-websocket";
+import * as Y from "yjs";
 
 const ydoc = new Y.Doc();
-const { WebsocketProvider } = require("y-websocket");
 const collaboration = false;
 
 interface Props {

@@ -1,29 +1,25 @@
 "use client";
 
-import { Input } from "@/app/components/ui/input";
 import { PasswordInput } from "@/app/components/custom/passwordInput";
 import { Button } from "@/app/components/ui/button";
-import Link from "next/link";
 import { Checkbox } from "@/app/components/ui/checkbox";
+import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/app/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Image from "next/image";
-import { Separator } from "@/app/components/ui/separator";
+import * as z from "zod";
 
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/app/api/firebase";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
@@ -50,7 +46,7 @@ const SignUpPage = () => {
   });
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const credential = createUserWithEmailAndPassword(auth, values.email, values.password)
+    createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         const uid = userCredential.user.uid;
         router.push(`/users/${uid}`);

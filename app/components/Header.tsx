@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { HomeIcon } from "lucide-react";
 import { SearchInput } from "@/app/components/custom/searchInput";
+import { HomeIcon } from "lucide-react";
+import Link from "next/link";
+import { useEffect } from "react";
 import MobileDropdownMenu from "./custom/mobileDropdownList";
 import { Button } from "./ui/button";
-import Link from "next/link";
 // import { UserAuth } from "@/app/api/AuthContext";
 import ProfileMenu from "@/app/components/custom/profileMenu";
 import { UserAuth } from "../api/AuthContext";
