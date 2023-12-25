@@ -27,7 +27,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "encoding": "^0.1.13",
-    "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
     "fast-xml-parser": "^4.3.2",
     "firebase": "^10.5.0",
@@ -51,7 +50,9 @@
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^3.1.1"
   }
 }
