@@ -3,7 +3,7 @@ import { Table } from '@radix-ui/themes'
 import Link from 'next/link';
 import '@radix-ui/themes/styles.css';
 import { rtdb } from "@/app/api/firebase";
-import { ref, push, get, limitToLast, query } from "firebase/database"
+import { ref, get, limitToLast, query } from "firebase/database"
 
 interface Props {
   params: { repoid: string }

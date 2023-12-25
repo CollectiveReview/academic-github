@@ -3,7 +3,6 @@
 import { Input } from "@/app/components/ui/input";
 import { PasswordInput } from "@/app/components/custom/passwordInput";
 import { Button } from "@/app/components/ui/button";
-import Link from "next/link";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import { Label } from "@/app/components/ui/label";
 
@@ -12,15 +11,12 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/app/components/ui/form";
 import { useForm } from "react-hook-form";
-import Image from "next/image";
-import { Separator } from "@/app/components/ui/separator";
 
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/app/api/firebase";

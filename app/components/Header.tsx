@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { HomeIcon } from "lucide-react";
 import { SearchInput } from "@/app/components/custom/searchInput";
 import MobileDropdownMenu from "./custom/mobileDropdownList";
