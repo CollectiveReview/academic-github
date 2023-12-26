@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { rtdb } from '@/app/api/firebase'
-import { ref, push, get, limitToLast, query } from "firebase/database"
 import dynamic from 'next/dynamic';
 
 const Viewer = dynamic(() => import("./Viewer"), { ssr: false });

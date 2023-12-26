@@ -1,5 +1,4 @@
-import { collection, doc, getDoc, limitToLast, setDoc } from "firebase/firestore";
-import { query, where, getDocs } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { NextRequest, NextResponse } from "next/server";
 

@@ -1,11 +1,10 @@
 import React from 'react'
-import { DocumentData, collection, doc, getDoc, limitToLast, orderBy, setDoc, startAt } from "firebase/firestore";
-import { query, where, getDocs } from "firebase/firestore";
+import { DocumentData, collection, orderBy, startAt } from "firebase/firestore";
+import { query, getDocs } from "firebase/firestore";
 import { db } from "@/app/api/firebase";
 import { Button, Table } from '@radix-ui/themes';
 import Link from 'next/link';
 import '@radix-ui/themes/styles.css';
-import { limitToFirst } from 'firebase/database';
 
 interface Repo {
     id: string,
