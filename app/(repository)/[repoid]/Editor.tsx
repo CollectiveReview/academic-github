@@ -1,14 +1,14 @@
 'use client'
 
-import { BlockNoteEditor } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
-import "@blocknote/core/style.css";
 import { getRandomUser } from "@/lib/randomUser";
+import { BlockNoteEditor } from "@blocknote/core";
+import "@blocknote/core/style.css";
+import { BlockNoteView, useBlockNote } from "@blocknote/react";
+import { IndexeddbPersistence } from 'y-indexeddb';
+import { WebsocketProvider } from 'y-websocket';
 import * as Y from "yjs";
-import { IndexeddbPersistence } from 'y-indexeddb'
 
 const ydoc = new Y.Doc();
-const { WebsocketProvider } = require("y-websocket");
 const collaboration = true
 
 interface Props {
