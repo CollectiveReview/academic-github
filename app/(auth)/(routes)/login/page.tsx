@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { auth } from "@/app/api/firebase";
 import {
   Form,
   FormControl,
@@ -15,12 +14,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/app/components/ui/form";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/app/api/firebase";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const formSchema = z.object({
   email: z.string(),
@@ -51,7 +51,10 @@ const LoginPage = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values.email, values.password)
     signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => { router.push(`/users/${userCredential.user.uid}`) })
+      .then((userCredential) => {
+        // router.push(`/users/${userCredential.user.uid}`) //production
+        router.push('/repos')  //development(v 0.1.0)
+      })
       .catch((error) => { console.log(error.code, error.message) })
   }
 
@@ -59,7 +62,8 @@ const LoginPage = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        router.push(`/users/${userCredential.user.uid}`)
+        // router.push(`/users/${userCredential.user.uid}`) //production
+        router.push('/repos')  //development(v 0.1.0)
       })
       .catch((error) => {
         console.log(error)
@@ -150,7 +154,7 @@ const LoginPage = () => {
             <Separator className="my-4" />
             <div className="w-full flex justify-between items-center">
               <Link href="/signup" className="text-sm hover:text-gray-700">
-                <p className="text-start">Don`t have account?</p>
+                <p className="text-start">Don`t have an account?</p>
               </Link>
             </div>
           </div>
