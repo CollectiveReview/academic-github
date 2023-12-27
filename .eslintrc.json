@@ -11,5 +11,15 @@
   "rules": {
     "unused-imports/no-unused-imports": "warn",
     "@typescript-eslint/no-unused-vars": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "./app/api/functions/index.js"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }
