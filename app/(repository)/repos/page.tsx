@@ -1,18 +1,15 @@
-'use client'
-
-import { UserAuth } from "@/app/api/AuthContext";
 import { db } from "@/app/api/firebase";
-import { Avatar, Button, Table, Tooltip } from '@radix-ui/themes';
+import { Avatar, Table } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import { DocumentData, collection, getDocs, orderBy, query, startAt } from "firebase/firestore";
 import Link from 'next/link';
+import CreateRepoButton from "./CreateRepoButton";
 
 interface Repo {
     id: string,
     data: DocumentData
 }
 const RepositoryListPage = async () => {
-    const { user } = UserAuth();
     const citiesRef = collection(db, "repos");
 
     const q = query(citiesRef, orderBy("title"), startAt(20));
@@ -27,15 +24,7 @@ const RepositoryListPage = async () => {
 
     return (
         <div>
-            <Button disabled={user === null}>{user === null ? (
-                <div>
-                    <Tooltip content="Login to Create Your Repo">
-                        <span>Create your own</span>
-                    </Tooltip>
-                </div>
-            ) : (
-                <Link href="/repos/new">Create your own</Link>
-            )} </Button>
+            <CreateRepoButton />
             <Table.Root>
                 <Table.Header>
                     <Table.Row>
@@ -65,7 +54,6 @@ const RepositoryListPage = async () => {
                     ))}
                 </Table.Body>
             </Table.Root>
-            <div></div>
         </div>
     )
 }
