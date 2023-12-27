@@ -17,19 +17,23 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/app/components/ui/dropdown-menu";
+import { getAuth } from "firebase/auth";
 
 const ProfileMenu = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
             <AvatarImage
-              src="/assets/images/user1.jpg"
+              src={user ? user.photoURL! : "/assets/images/user1.jpg"}
               alt="login"
               className="object-cover object-center"
             />
-            <AvatarFallback>ME!</AvatarFallback>
+            <AvatarFallback>Menu</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
