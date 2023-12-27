@@ -20,13 +20,13 @@ export default function Editor({ params }: Props) {
     const user = auth.currentUser;
 
     const provider = collaboration ?
-        new WebsocketProvider("wss://io.gnt.place", params.repoid, ydoc) :
+        new WebsocketProvider("wss://io.gnt.place", "", ydoc) :
         new IndexeddbPersistence(params.repoid, ydoc);
 
     const editor: BlockNoteEditor | null = useBlockNote({
         collaboration: {
             provider,
-            fragment: ydoc.getXmlFragment("document-store"),
+            fragment: ydoc.getXmlFragment(params.repoid),
             user: user ? { name: user.displayName!, color: "#FAF594" } : getRandomUser(),
         },
     });
