@@ -2,7 +2,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "prettier.configPath": ".prettierrc.json",
   "typescript.tsdk": "node_modules/typescript/lib"

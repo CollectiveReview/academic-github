@@ -6,10 +6,10 @@ import "@blocknote/core/style.css";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import { getAuth } from "firebase/auth";
 import { IndexeddbPersistence } from 'y-indexeddb';
+import { WebsocketProvider } from 'y-websocket';
 import * as Y from "yjs";
 
 const ydoc = new Y.Doc();
-const { WebsocketProvider } = require("y-websocket");
 const collaboration = true
 
 interface Props {
