@@ -26,11 +26,12 @@ const NewRepoPage = () => {
             const post = {
                 ...data,
                 uid: user!.uid,
-                avatarURL: user!.photoURL
+                avatarURL: user!.photoURL,
+                createdAt: Date.now()
             }
-            console.log(post)
+            // console.log(post)
             const res = await axios.post("/api/repos", post)
-            console.log(res)
+            // console.log(res)
             router.push("/repos")
         })}>
             <TextField.Root>
