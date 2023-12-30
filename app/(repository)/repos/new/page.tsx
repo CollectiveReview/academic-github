@@ -30,9 +30,10 @@ const NewRepoPage = () => {
                 createdAt: Date.now()
             }
             // console.log(post)
-            const res = await axios.post("/api/repos", post)
+            await axios.post("/api/repos", post)
             // console.log(res)
             router.push("/repos")
+            router.refresh()
         })}>
             <TextField.Root>
                 <TextField.Input placeholder='Title' {...register('title')} />

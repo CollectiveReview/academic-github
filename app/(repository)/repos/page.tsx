@@ -1,7 +1,7 @@
 import { db } from '@/app/api/firebase';
 import { Avatar, Table } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
-import { DocumentData, collection, getDocsFromServer } from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
 import Link from 'next/link';
 import CreateRepoButton from "./CreateRepoButton";
 
@@ -10,10 +10,9 @@ interface Repo {
     data: DocumentData
 }
 const RepositoryListPage = async () => {
-    const querySnapshot = await getDocsFromServer(collection(db, "repos"));
+    const querySnapshot = await getDocs(collection(db, "repos"));
     const repos: Repo[] = []
     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         repos.push({ id: doc.id, data: doc.data() })
     });
 
@@ -52,5 +51,7 @@ const RepositoryListPage = async () => {
         </div>
     )
 }
+
+export const dynamic = 'force-dynamic'
 
 export default RepositoryListPage
