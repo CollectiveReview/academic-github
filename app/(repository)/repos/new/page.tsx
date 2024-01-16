@@ -25,10 +25,14 @@ const NewRepoPage = () => {
             setSubmitting(true)
             const post = {
                 ...data,
-                uid: user!.uid,
-                avatarURL: user!.photoURL,
-                createdAt: Date.now()
+                // users: [
+                //     {
+                //         uid: user!.uid,
+                //         avatarURL: user!.photoURL
+                //     }
+                // ]
             }
+
             // console.log(post)
             await axios.post("/api/repos", post)
             // console.log(res)
@@ -40,7 +44,7 @@ const NewRepoPage = () => {
             </TextField.Root>
             <TextArea placeholder='Description' {...register('description')} />
             <Button disabled={isSubmitting || user === null}> Create New Repository {isSubmitting && <Spinner />}</Button>
-        </form>
+        </form >
     )
 }
 

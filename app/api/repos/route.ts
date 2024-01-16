@@ -1,27 +1,37 @@
-import { collection, doc, getDocs, orderBy, query, setDoc, startAt } from "firebase/firestore";
+import { PrismaClient } from "@prisma/client";
+import { collection, getDocs, orderBy, query, startAt } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 import { db } from "../firebase";
 
+const prisma = new PrismaClient()
+const repoSchema = z.object({
+    title: z.string().min(1).max(255),
+    description: z.string()
+})
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const reposRef = collection(db, "repos");
 
-    await setDoc(doc(reposRef), {
-        title: body.title,
-        description: body.description,
-        createdAt: body.createdAt,
-        contributions: [],
-        dependencies: [],
-        thumbnail: null,
-        uid: null,
-        visibility: "public",
-        users: [
-            { uid: body.uid, avatarURL: body.avatarURL, permission: "admin" }
-        ]
-    })
+    const validation = repoSchema.safeParse(body)
+    if (!validation.success) return NextResponse.json("data you provided is not valid", { status: 400 })
 
-    return NextResponse.json("success", { status: 201 })
+    const repo = await prisma.repo.create({
+        data: {
+            title: body.title,
+            description: body.description,
+            createdAt: body.createdAt,
+            // contributions: [],
+            // dependencies: [],
+            thumbnailURL: "",
+            // users: [
+            //     { uid: body.uid, avatarURL: body.avatarURL, permission: "admin" }
+            // ]
+        }
+    },)
+
+    return NextResponse.json(repo, { status: 201 })
 }
+
 export async function GET(request: NextRequest) {
     const reposRef = collection(db, "repos");
     const q = query(reposRef, orderBy("title"), startAt(20));
