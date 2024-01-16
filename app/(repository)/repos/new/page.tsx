@@ -25,16 +25,16 @@ const NewRepoPage = () => {
             setSubmitting(true)
             const post = {
                 ...data,
-                // users: [
-                //     {
-                //         uid: user!.uid,
-                //         avatarURL: user!.photoURL
-                //     }
-                // ]
+                users: [
+                    {
+                        uid: user!.uid,
+                        avatarURL: user!.photoURL
+                    }
+                ]
             }
 
             // console.log(post)
-            await axios.post("/api/repos", post)
+            await axios.post("/api/repos", data)
             // console.log(res)
             router.push("/repos")
             router.refresh()

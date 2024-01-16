@@ -1,53 +1,48 @@
-import { db } from '@/app/api/firebase';
-import { Avatar, Table } from '@radix-ui/themes';
+import prisma from '@/lib/prisma';
+import { Table } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
-import { DocumentData, collection, getDocs } from "firebase/firestore";
 import Link from 'next/link';
 import CreateRepoButton from "./CreateRepoButton";
 
 interface Repo {
-    id: string,
-    data: DocumentData
+    uid: string; createdAt: Date; updatedAt: Date; description: string; thumbnailURL: string; title: string; visibility: Visibility;
 }
 const RepositoryListPage = async () => {
-    const querySnapshot = await getDocs(collection(db, "repos"));
-    const repos: Repo[] = []
-    querySnapshot.forEach((doc) => {
-        repos.push({ id: doc.id, data: doc.data() })
-    });
-
+    const repos = await prisma.repo.findMany();
 
     return (
         <div>
             <CreateRepoButton />
+
             <Table.Root>
                 <Table.Header>
                     <Table.Row>
-                        <Table.Cell>Title</Table.Cell>
-                        <Table.Cell>Contributors</Table.Cell>
-                        <Table.Cell>Created At</Table.Cell>
-                        <Table.Cell>Description</Table.Cell>
+                        <Table.RowHeaderCell>Title</Table.RowHeaderCell>
+                        {/* <Table.Cell>Contributors</Table.Cell> */}
+                        <Table.RowHeaderCell>Created At</Table.RowHeaderCell>
+                        <Table.RowHeaderCell>Description</Table.RowHeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {repos?.map((repo: Repo) => (
-                        <Table.Row key={repo.id}>
-                            <Table.Cell><Link href={`./${repo.id}`}>{repo.data.title}</Link></Table.Cell>
-                            <Table.Cell>{repo.data.users ?
+                        <Table.Row key={repo.uid}>
+                            <Table.Cell><Link href={`./${repo.uid}`}>{repo.title}</Link></Table.Cell>
+                            {/* <Table.Cell>{repo.users ?
                                 <Avatar
-                                    src={repo.data.users[0].avatarURL}
+                                    src={repo.users[0].avatarURL}
                                     fallback="?"
                                 />
                                 : "Unknown"
-                            }</Table.Cell>
-                            <Table.Cell>{(new Date(repo.data.createdAt)).toLocaleString()}</Table.Cell>
+                            }</Table.Cell> */}
+                            <Table.Cell>{repo.createdAt.toLocaleString()}</Table.Cell>
                             <Table.Cell>
-                                <p className='w-[300px] line-clamp-2'>{repo.data.description}</p>
+                                <p className='w-[300px] line-clamp-2'>{repo.description}</p>
                             </Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
             </Table.Root>
+
         </div>
     )
 }
