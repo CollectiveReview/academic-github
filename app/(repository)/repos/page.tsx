@@ -4,9 +4,6 @@ import '@radix-ui/themes/styles.css';
 import Link from 'next/link';
 import CreateRepoButton from "./CreateRepoButton";
 
-interface Repo {
-    uid: string; createdAt: Date; updatedAt: Date; description: string; thumbnailURL: string; title: string; visibility: Visibility;
-}
 const RepositoryListPage = async () => {
     const repos = await prisma.repo.findMany();
 
@@ -24,7 +21,7 @@ const RepositoryListPage = async () => {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {repos?.map((repo: Repo) => (
+                    {repos?.map((repo) => (
                         <Table.Row key={repo.uid}>
                             <Table.Cell><Link href={`./${repo.uid}`}>{repo.title}</Link></Table.Cell>
                             {/* <Table.Cell>{repo.users ?

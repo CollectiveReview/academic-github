@@ -1,3 +1,4 @@
+/* eslint no-var: 0 */
 import { PrismaClient } from '@prisma/client'
 
 const prismaClientSingleton = () => {
